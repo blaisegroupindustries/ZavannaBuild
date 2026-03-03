@@ -34,7 +34,7 @@
             color: var(--text-dark);
             overflow-x: hidden;
             line-height: 1.6;
-            padding-top: 80px; 
+            padding-top: 90px; 
         }
 
         @keyframes fadeIn {
@@ -47,31 +47,35 @@
             animation: fadeIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
         }
 
-        /* Navbar Master */
+        /* Navbar Melhorada */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            height: 80px;
+            height: 90px;
             background: var(--glass);
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 8%;
-            z-index: 5000;
-            box-shadow: 0 4px 30px rgba(0,0,0,0.05);
+            z-index: 3000;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.03);
             backdrop-filter: blur(15px);
-            border-bottom: 2px solid var(--accent);
+            border-bottom: 1px solid rgba(140, 109, 49, 0.1);
         }
 
         .nav-logo img {
-            height: 45px;
-            display: block;
+            height: 100px;
+            transition: transform 0.3s;
+        }
+
+        .nav-logo img:hover {
+            transform: scale(1.05);
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 40px;
             align-items: center;
         }
 
@@ -79,37 +83,54 @@
             text-decoration: none;
             color: var(--secondary);
             font-weight: 700;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
             transition: 0.3s;
         }
 
-        .nav-links a:hover { color: var(--accent); }
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
 
         .btn-nav {
             background: var(--secondary);
             color: white !important;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 2px;
+            font-size: 0.75rem !important;
         }
 
-        .mobile-menu-icon {
-            display: none;
-            font-size: 1.8rem;
-            color: var(--secondary);
-            cursor: pointer;
+        .btn-nav:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
         }
 
         header {
-            min-height: 100vh;
+            height: calc(100vh - 90px);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 100px 5% 40px 5%;
-            background: linear-gradient(rgba(253, 251, 247, 0.6), rgba(253, 251, 247, 0.85)), 
+            padding: 2rem;
+            background: linear-gradient(rgba(253, 251, 247, 0.5), rgba(253, 251, 247, 0.8)), 
                         url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
@@ -118,18 +139,18 @@
 
         .logo-header {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 800;
-            letter-spacing: 5px;
+            letter-spacing: 8px;
             color: var(--accent);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             text-transform: uppercase;
         }
 
         h1 {
-            font-size: 3.5rem;
-            max-width: 900px;
-            margin-bottom: 1.5rem;
+            font-size: 4rem;
+            max-width: 1000px;
+            margin-bottom: 2rem;
             font-weight: 900;
             color: var(--secondary);
             text-transform: uppercase;
@@ -140,112 +161,178 @@
 
         .cta-container {
             display: flex;
-            gap: 15px;
-            margin-top: 2rem;
+            gap: 25px;
+            margin-top: 3.5rem;
             flex-wrap: wrap;
             justify-content: center;
         }
 
         .btn {
-            padding: 1.2rem 2.5rem;
-            font-size: 0.85rem;
+            padding: 1.5rem 3.5rem;
+            font-size: 0.9rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 2.5px;
             cursor: pointer;
-            transition: 0.4s;
+            transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
             border-radius: 2px; 
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .btn-primary { background: var(--secondary); color: white; border: 1px solid var(--secondary); }
-        .btn-outline { background: transparent; border: 2px solid var(--secondary); color: var(--secondary); }
+        .btn-primary {
+            background-color: var(--secondary);
+            color: white;
+            border: 1px solid var(--secondary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(140, 109, 49, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+        }
+
+        .btn-outline:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-8px);
+        }
 
         .whatsapp-float {
             position: fixed;
-            bottom: 25px;
-            right: 25px;
+            bottom: 40px;
+            right: 40px;
             background-color: #25D366;
             color: white;
-            width: 60px;
-            height: 60px;
+            width: 65px;
+            height: 65px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 30px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            z-index: 4000;
+            font-size: 32px;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+            z-index: 1000;
+            transition: 0.4s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(10deg);
         }
 
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(44, 36, 26, 0.98);
+            background: rgba(44, 36, 26, 0.95);
             display: none;
             justify-content: center;
             align-items: center;
-            z-index: 6000;
-            padding: 20px;
+            z-index: 4000;
+            backdrop-filter: blur(10px);
         }
 
         .modal-content {
             background: white;
-            padding: 40px 25px;
-            max-width: 500px;
-            width: 100%;
+            padding: 60px;
+            max-width: 550px;
+            width: 90%;
             text-align: center;
-            border-top: 6px solid var(--accent);
+            border-top: 8px solid var(--accent);
+            animation: fadeIn 0.6s ease;
         }
 
-        .section-info { padding: 80px 8%; background: white; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .card { padding: 40px; border: 1px solid #f0f0f0; background: #fff; transition: 0.3s; }
-        .card i { color: var(--accent); font-size: 2.5rem; margin-bottom: 20px; display: block; }
+        .section-info {
+            padding: 150px 10%;
+            background: white;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .card {
+            padding: 50px;
+            border: 1px solid #f0f0f0;
+            transition: 0.5s;
+            background: #fff;
+            position: relative;
+        }
+
+        .card:hover { 
+            border-color: var(--accent); 
+            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+            transform: translateY(-15px);
+        }
+
+        .card i { 
+            color: var(--accent); 
+            font-size: 3rem; 
+            margin-bottom: 30px; 
+            display: block;
+        }
 
         .impact-section {
             display: flex;
-            padding: 80px 8%;
-            gap: 40px;
+            padding: 120px 10%;
+            gap: 80px;
             background: var(--primary);
             align-items: center;
             flex-wrap: wrap;
         }
 
         .impact-image {
-            flex: 1; min-width: 300px; height: 400px;
+            flex: 1; min-width: 400px; height: 550px;
             background: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
-            box-shadow: 15px 15px 0px var(--accent);
+            box-shadow: 30px 30px 0px var(--accent);
         }
 
-        footer { padding: 60px 8%; background: var(--secondary); color: #888; text-align: center; }
+        .final-cta {
+            padding: 150px 10%;
+            background: white;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        footer {
+            padding: 100px 8%;
+            background: var(--secondary);
+            color: #888;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            color: var(--accent);
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-15px);}
+            60% {transform: translateY(-7px);}
+        }
 
         @media (max-width: 768px) {
-            nav { padding: 0 5%; height: 70px; }
-            body { padding-top: 70px; }
-            .mobile-menu-icon { display: block; }
-            .nav-links {
-                position: absolute;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                background: white;
-                flex-direction: column;
-                padding: 40px 0;
-                transition: 0.5s;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-                border-bottom: 3px solid var(--accent);
-            }
-            .nav-links.active { left: 0; }
-            h1 { font-size: 2.2rem; }
-            .logo-header { font-size: 0.9rem; letter-spacing: 3px; }
-            .btn { width: 100%; justify-content: center; }
-            .impact-image { min-width: 100%; height: 280px; box-shadow: 10px 10px 0px var(--accent); }
+            h1 { font-size: 2.8rem; }
+            .nav-links { display: none; }
+            .nav { padding: 0 5%; }
+            .impact-image { min-width: 100%; height: 350px; }
         }
     </style>
 </head>
@@ -255,13 +342,10 @@
         <div class="nav-logo">
             <img src="Zavanna_logo.png" alt="Zavanna Build Logo">
         </div>
-        <div class="mobile-menu-icon" onclick="toggleMenu()">
-            <i class="fas fa-bars" id="menuToggleIcon"></i>
-        </div>
-        <div class="nav-links" id="navLinks">
-            <a href="#estaleiro" onclick="toggleMenu()">Especialidades</a>
-            <a href="#sobre" onclick="toggleMenu()">Sobre a Zavanna</a>
-            <a href="javascript:void(0)" onclick="openModal('completo'); toggleMenu();" class="btn-nav">Contactar Engenharia</a>
+        <div class="nav-links">
+            <a href="#estaleiro">Especialidades</a>
+            <a href="#sobre">Sobre a Zavanna</a>
+            <a href="javascript:void(0)" onclick="openModal('completo')" class="btn-nav">Contactar Engenharia</a>
         </div>
     </nav>
 
@@ -271,78 +355,98 @@
 
     <div class="modal-overlay" id="contactModal">
         <div class="modal-content">
-            <h2 id="modalTitle" style="text-transform: uppercase; letter-spacing: 1px; font-weight: 900;">Solicitar Cotação</h2>
-            <div style="width: 40px; height: 3px; background: var(--accent); margin: 15px auto;"></div>
-            <p style="margin: 20px 0; color: var(--text-muted); font-size: 1rem;">Fale diretamente com o nosso departamento técnico para análise de projetos.</p>
-            <div style="display: flex; flex-direction: column; gap: 12px;">
-                <a href="mailto:contato@zavannabuild.com" class="btn btn-outline">E-mail Corporativo</a>
-                <a href="https://wa.me/25886440354" class="btn btn-primary" style="background-color: #25D366; border-color: #25D366;">WhatsApp Direto</a>
+            <h2 id="modalTitle" style="text-transform: uppercase; letter-spacing: 2px; font-weight: 900;">Solicitar Cotação</h2>
+            <div style="width: 50px; height: 3px; background: var(--accent); margin: 20px auto;"></div>
+            <p style="margin: 25px 0; color: var(--text-muted); font-size: 1.1rem; line-height: 1.8;">Fale diretamente com o nosso departamento técnico para análise de projetos e mobilização de recursos.</p>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <a href="mailto:contato@zavannabuild.com" class="btn btn-outline" style="justify-content: center;">E-mail Corporativo</a>
+                <a href="https://wa.me/25886440354" class="btn btn-primary" style="justify-content: center; background-color: #25D366; border-color: #25D366;">WhatsApp Executivo</a>
             </div>
-            <p onclick="closeModal()" style="margin-top:25px; cursor:pointer; font-weight:800; color: #999; font-size: 0.7rem;">[ FECHAR ]</p>
+            <p onclick="closeModal()" style="margin-top:35px; cursor:pointer; font-weight:800; color: #ccc; letter-spacing: 2px; font-size: 0.8rem;">[ FECHAR JANELA ]</p>
         </div>
     </div>
 
     <header>
-        <div class="logo-header reveal">ZAVANNA BUILD</div>
-        <h1 class="reveal" style="animation-delay: 0.2s;">Erguemos o Futuro de <b>Moçambique</b>.</h1>
-        <p class="reveal" style="color: var(--text-muted); max-width: 600px; font-weight: 500; font-size: 1.1rem;">
-            Infraestrutura pesada e engenharia de precisão com o rigor que o seu investimento exige.
+        <div class="logo-header reveal">Sólida. Imponente. Zavanna.</div>
+        <h1 class="reveal" style="animation-delay: 0.2s;">Erguemos o Futuro de <b>Moçambique</b> com Rigor Técnico.</h1>
+        <p class="reveal" style="color: var(--text-muted); max-width: 750px; font-weight: 500; font-size: 1.25rem; line-height: 1.8;">
+            Liderança em infraestrutura e obras de grande porte. Unimos a precisão da engenharia ao compromisso inabalável com a qualidade.
         </p>
         
         <div class="cta-container reveal" style="animation-delay: 0.4s;">
-            <button class="btn btn-outline" onclick="actionSequence('planta')">Projetos</button>
-            <button class="btn btn-primary" onclick="actionSequence('completo')">Mobilizar Obra</button>
+            <button class="btn btn-outline" onclick="actionSequence('planta')">
+                <i class="fas fa-drafting-compass"></i> Consultar Projetos
+            </button>
+            <button class="btn btn-primary" onclick="actionSequence('completo')">
+                <i class="fas fa-hammer"></i> Mobilizar Obra
+            </button>
         </div>
+        <div class="scroll-hint"><i class="fas fa-mouse"></i></div>
     </header>
 
     <section class="section-info" id="estaleiro">
-        <div style="text-align: center; margin-bottom: 50px;" class="reveal">
-            <h2 style="font-size: 2.2rem; text-transform: uppercase; font-weight: 900;">Especialidades</h2>
-            <div style="width: 60px; height: 4px; background: var(--accent); margin: 15px auto;"></div>
+        <div style="text-align: center; margin-bottom: 80px;" class="reveal">
+            <h2 style="font-size: 3rem; text-transform: uppercase; font-weight: 900; color: var(--secondary);">Especialidades</h2>
+            <div style="width: 100px; height: 6px; background: var(--accent); margin: 25px auto;"></div>
         </div>
         <div class="grid">
             <div class="card reveal">
                 <i class="fas fa-hard-hat"></i>
-                <h3 style="margin-bottom: 10px; text-transform: uppercase; font-size: 1.1rem;">Gestão de Obras</h3>
-                <p style="color: var(--text-muted); font-size: 0.95rem;">Fiscalização técnica absoluta em cada etapa do seu empreendimento.</p>
+                <h3 style="margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">Gestão de Obras</h3>
+                <p style="color: var(--text-muted);">Fiscalização técnica rigorosa e controlo de qualidade para garantir que cada projeto cumpre as normas internacionais.</p>
             </div>
             <div class="card reveal" style="animation-delay: 0.2s;">
                 <i class="fas fa-project-diagram"></i>
-                <h3 style="margin-bottom: 10px; text-transform: uppercase; font-size: 1.1rem;">Arquitetura</h3>
-                <p style="color: var(--text-muted); font-size: 0.95rem;">Masterplans modernos que maximizam o retorno do investimento.</p>
+                <h3 style="margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">Arquitetura & Engenharia</h3>
+                <p style="color: var(--text-muted);">Desenvolvimento de masterplans e soluções estruturais modernas que otimizam o tempo e o investimento.</p>
             </div>
             <div class="card reveal" style="animation-delay: 0.4s;">
                 <i class="fas fa-monument"></i>
-                <h3 style="margin-bottom: 10px; text-transform: uppercase; font-size: 1.1rem;">Infraestrutura</h3>
-                <p style="color: var(--text-muted); font-size: 0.95rem;">Capacidade de mobilização nacional para obras de grande porte.</p>
+                <h3 style="margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">Infraestrutura</h3>
+                <p style="color: var(--text-muted);">Execução de edificações industriais e obras públicas com logística de alta performance em todo o território nacional.</p>
             </div>
         </div>
     </section>
 
     <section class="impact-section" id="sobre">
         <div class="impact-content reveal" style="flex: 1;">
-            <h2 style="margin-bottom: 20px; font-size: 2rem; text-transform: uppercase; font-weight: 900;">Compromisso Real</h2>
-            <p style="font-size: 1.1rem; margin-bottom: 20px;">Na Zavanna Build, unimos a solidez do concreto à precisão do cálculo.</p>
-            <p style="font-weight: 900; color: var(--accent); text-transform: uppercase;">Rigor. Qualidade. Zavanna.</p>
+            <h2 style="margin-bottom: 30px; font-size: 2.5rem; text-transform: uppercase; font-weight: 900; line-height: 1.2;">Compromisso com o Concreto</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">Na Zavanna Build, não construímos apenas paredes. Erguemos marcos de desenvolvimento que resistem ao tempo.</p>
+            <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px;">A nossa força reside no rigor técnico e na seleção criteriosa de materiais, garantindo que cada obra seja uma prova da nossa excelência.</p>
+            <p style="font-weight: 900; color: var(--accent); text-transform: uppercase; letter-spacing: 2px;">Rigor. Qualidade. Zavanna.</p>
         </div>
         <div class="impact-image reveal"></div>
     </section>
 
+    <section class="final-cta reveal">
+        <h2 style="text-transform: uppercase; margin-bottom: 25px; font-size: 2.5rem; font-weight: 900;">Pronto para erguer o seu projeto?</h2>
+        <p style="color: var(--text-muted); margin-bottom: 50px; font-size: 1.2rem;">Agende uma reunião técnica com os nossos engenheiros chefes.</p>
+        <div class="cta-container">
+            <button class="btn btn-primary" onclick="openModal('completo')">
+                <i class="fas fa-phone-alt"></i> Falar com Especialista
+            </button>
+        </div>
+    </section>
+
     <footer>
-        <div class="logo-header" style="color: white; font-size: 1.2rem; margin-bottom: 10px;">Zavanna Build</div>
-        <p style="font-size: 0.85rem; margin-bottom: 20px;">Maputo, Moçambique. Construindo o Amanhã.</p>
-        <p style="font-size: 0.75rem; border-top: 1px solid #444; padding-top: 20px;">&copy; 2026 Zavanna Build. Engenharia de Grande Porte.</p>
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; margin-bottom: 60px;">
+            <div style="max-width: 300px;">
+                <div class="logo-header" style="color: white; font-size: 1.5rem; margin-bottom: 20px;">Zavanna Build</div>
+                <p>Referência em engenharia civil e construção pesada em Moçambique.</p>
+            </div>
+            <div>
+                <h4 style="color: white; margin-bottom: 20px; text-transform: uppercase;">Contacto</h4>
+                <p>Maputo, Moçambique</p>
+                <p>+258 86 440 354</p>
+                <p>contato@zavannabuild.com</p>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #444; padding-top: 40px; text-align: center; font-size: 0.8rem;">
+            <p>&copy; 2026 Zavanna Build - Engenharia de Grande Porte. Todos os direitos reservados.</p>
+        </div>
     </footer>
 
     <script>
-        function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            const menuIcon = document.getElementById('menuToggleIcon');
-            navLinks.classList.toggle('active');
-            menuIcon.classList.toggle('fa-bars');
-            menuIcon.classList.toggle('fa-times');
-        }
-
         function actionSequence(type) {
             document.getElementById('estaleiro').scrollIntoView({ behavior: 'smooth' });
             setTimeout(() => { openModal(type); }, 800);
@@ -350,7 +454,7 @@
 
         function openModal(type) {
             const modal = document.getElementById('contactModal');
-            document.getElementById('modalTitle').innerText = type === 'planta' ? "Análise de Projeto" : "Execução Total";
+            document.getElementById('modalTitle').innerText = type === 'planta' ? "Análise de Projeto" : "Execução de Obra Total";
             modal.style.display = 'flex';
         }
 
