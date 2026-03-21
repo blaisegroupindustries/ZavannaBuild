@@ -1,794 +1,882 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zavanna Build|Arquitectura — Moçambique</title>
-    <meta name="description" content="Zavanna — Atelier de arquitectura em Moçambique. Projectos residenciais, comerciais e institucionais com rigor, visão e identidade.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-    <link rel="icon" href="Zavanna_logo.png" type="image/png">
-    <style>
-        :root {
-            --bg:        #f7f4ef;
-            --bg-white:  #ffffff;
-            --bg-soft:   #eeebe4;
-            --bg-dark:   #1a1713;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zavanna Build — Atelier de Arquitectura · Moçambique</title>
+<meta name="description" content="Zavanna — Atelier de arquitectura em Moçambique. Projectos residenciais, comerciais e institucionais com rigor, visão e identidade.">
+<link rel="icon" href="Zavanna_logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+:root {
+  --bg:      #f7f4ef;
+  --white:   #ffffff;
+  --soft:    #eeeae2;
+  --dark:    #1a1713;
+  --ink:     #1a1713;
+  --ink2:    #3c3830;
+  --muted:   #6e6660;
+  --light:   #a8a09a;
+  --bronze:  #8b6914;
+  --bdk:     #6e5210;
+  --blt:     #c4a55a;
+  --bbg:     #f4edd8;
+  --border:  rgba(26,23,19,0.09);
+  --bborder: rgba(139,105,20,0.22);
+  --serif:   'Cormorant Garamond', serif;
+  --sans:    'DM Sans', sans-serif;
+  --mono:    'DM Mono', monospace;
+}
 
-            --ink:       #1a1713;
-            --ink-2:     #3c3830;
-            --ink-muted: #6e6660;
-            --ink-light: #a8a09a;
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { background:var(--bg); color:var(--ink); font-family:var(--sans); overflow-x:hidden; line-height:1.6; }
+img { display:block; max-width:100%; }
+a { text-decoration:none; }
 
-            --bronze:    #8b6914;
-            --bronze-dk: #6e5210;
-            --bronze-lt: #c4a55a;
-            --bronze-bg: #f4edd8;
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width:3px; }
+::-webkit-scrollbar-thumb { background:var(--bronze); }
 
-            --border:    rgba(26,23,19,0.09);
-            --border-br: rgba(139,105,20,0.22);
+/* ── NAV ── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  height:76px; padding:0 6%;
+  display:flex; align-items:center; justify-content:space-between;
+  background:rgba(247,244,239,0.97);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(16px);
+  transition:box-shadow 0.3s;
+}
+nav.scrolled { box-shadow:0 4px 22px rgba(26,23,19,.08); }
+.nav-logo { display:flex; align-items:center; }
+.nav-logo img { height:80px; width:auto; object-fit:contain; }
+.nav-links { display:flex; align-items:center; gap:32px; list-style:none; }
+.nav-links a {
+  font-family:var(--mono); font-size:0.67rem; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--ink2); transition:color .3s;
+}
+.nav-links a:hover { color:var(--bronze); }
+.nav-cta {
+  padding:9px 22px; border:1px solid var(--bronze);
+  color:var(--bronze) !important; transition:all .3s !important;
+}
+.nav-cta:hover { background:var(--bronze) !important; color:#fff !important; }
+.hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:4px; }
+.hamburger span { display:block; width:22px; height:1.5px; background:var(--ink); transition:.3s; }
+.mob-nav {
+  display:none; position:fixed; top:76px; left:0; right:0;
+  background:var(--white); border-bottom:1px solid var(--border);
+  padding:1.5rem 6% 2rem; flex-direction:column; gap:1.25rem;
+  z-index:999;
+}
+.mob-nav.open { display:flex; }
+.mob-nav a { color:var(--ink2); font-size:1rem; padding-bottom:1rem; border-bottom:1px solid var(--border); }
+.mob-nav a:hover { color:var(--bronze); }
 
-            --f-serif: 'Cormorant Garamond', serif;
-            --f-sans:  'DM Sans', sans-serif;
-            --f-mono:  'DM Mono', monospace;
-        }
-        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-        html { scroll-behavior:smooth; }
-        body { background:var(--bg); color:var(--ink); font-family:var(--f-sans); overflow-x:hidden; line-height:1.6; }
-        ::-webkit-scrollbar { width:3px; }
-        ::-webkit-scrollbar-track { background:var(--bg-soft); }
-        ::-webkit-scrollbar-thumb { background:var(--bronze); }
+/* ── HERO ── */
+#hero {
+  min-height:100vh; padding-top:76px;
+  position:relative; overflow:hidden;
+  display:flex; align-items:flex-end;
+  padding-bottom:8%;
+}
+.hero-bg {
+  position:absolute; inset:0;
+  background:url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=85&w=2031') center/cover;
+}
+.hero-bg::after {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(108deg,rgba(10,8,5,.84) 0%,rgba(10,8,5,.5) 55%,rgba(10,8,5,.14) 100%);
+}
+.hero-body {
+  position:relative; z-index:2;
+  padding:0 6%; max-width:700px;
+}
+.hero-tag {
+  font-family:var(--mono); font-size:0.63rem; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--blt);
+  display:flex; align-items:center; gap:12px; margin-bottom:22px;
+}
+.hero-tag::before { content:''; width:26px; height:1px; background:var(--blt); display:block; }
+.hero-title {
+  font-family:var(--serif); font-size:clamp(3rem,6.5vw,6rem);
+  font-weight:600; line-height:1.03; color:#fff; margin-bottom:22px;
+}
+.hero-title em { font-style:italic; color:var(--blt); }
+.hero-sub {
+  font-size:1rem; font-weight:300; line-height:1.85;
+  color:rgba(255,255,255,.62); max-width:460px; margin-bottom:40px;
+}
+.hero-btns { display:flex; gap:12px; flex-wrap:wrap; }
 
-        /* ── UTILS ── */
-        .mono { font-family:var(--f-mono); font-size:0.67rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--bronze); }
-        .line  { width:38px; height:1px; background:var(--bronze); display:block; margin:14px 0; }
-        .h-serif {
-            font-family:var(--f-serif); font-size:clamp(2rem,4vw,3.6rem);
-            font-weight:600; line-height:1.08; color:var(--ink);
-        }
-        .h-serif em { font-style:italic; color:var(--bronze); }
-        .body-text { font-size:0.95rem; font-weight:300; line-height:1.9; color:var(--ink-muted); }
+.btn {
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:var(--mono); font-size:0.7rem; font-weight:500;
+  letter-spacing:.13em; text-transform:uppercase;
+  padding:13px 30px; border:none; cursor:pointer;
+  transition:all .35s; text-decoration:none;
+}
+.btn-dark { background:var(--ink); color:#fff; }
+.btn-dark:hover { background:var(--bronze); transform:translateY(-2px); }
+.btn-ghost { background:transparent; border:1px solid rgba(255,255,255,.4); color:#fff; }
+.btn-ghost:hover { background:rgba(255,255,255,.1); border-color:#fff; }
+.btn-bronze { background:var(--bronze); color:#fff; }
+.btn-bronze:hover { background:var(--bdk); transform:translateY(-2px); }
+.btn-outline { background:transparent; border:1px solid var(--ink); color:var(--ink); }
+.btn-outline:hover { background:var(--ink); color:#fff; transform:translateY(-2px); }
 
-        .btn {
-            display:inline-flex; align-items:center; gap:10px;
-            font-family:var(--f-mono); font-size:0.7rem; font-weight:500;
-            letter-spacing:0.13em; text-transform:uppercase; text-decoration:none;
-            cursor:pointer; border:none; padding:13px 30px;
-            transition:all 0.4s cubic-bezier(.19,1,.22,1);
-        }
-        .btn-dk  { background:var(--ink); color:#fff; }
-        .btn-dk:hover { background:var(--bronze); transform:translateY(-2px); }
-        .btn-br  { background:var(--bronze); color:#fff; }
-        .btn-br:hover { background:var(--bronze-dk); transform:translateY(-2px); }
-        .btn-ol  { background:transparent; border:1px solid var(--ink); color:var(--ink); }
-        .btn-ol:hover { background:var(--ink); color:#fff; transform:translateY(-2px); }
-        .btn-ol-wh { background:transparent; border:1px solid rgba(255,255,255,0.45); color:#fff; }
-        .btn-ol-wh:hover { background:rgba(255,255,255,.12); border-color:#fff; }
+.hero-stats {
+  position:absolute; bottom:8%; right:6%; z-index:2;
+  display:flex; flex-direction:column; align-items:flex-end; gap:20px;
+}
+.hstat-n { font-family:var(--serif); font-size:2.8rem; font-weight:600; color:#fff; line-height:1; text-align:right; }
+.hstat-l { font-family:var(--mono); font-size:.58rem; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.4); text-align:right; margin-top:3px; }
 
-        /* ── NAV ── */
-        nav {
-            position:fixed; top:0; width:100%; height:78px;
-            display:flex; justify-content:space-between; align-items:center;
-            padding:0 6%; z-index:9000; transition:all 0.4s;
-        }
-        nav.on {
-            background:rgba(247,244,239,0.96); height:66px;
-            border-bottom:1px solid var(--border);
-            backdrop-filter:blur(16px);
-            box-shadow:0 4px 22px rgba(26,23,19,.05);
-        }
-        .nav-brand { text-decoration:none; }
-        .nav-brand-name { font-family:var(--f-serif); font-size:1.6rem; font-weight:600; color:#fff; letter-spacing:.04em; transition:color .4s; }
-        .nav-brand-sub  { font-family:var(--f-mono); font-size:0.52rem; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.5); transition:color .4s; }
-        nav.on .nav-brand-name { color:var(--ink); }
-        nav.on .nav-brand-sub  { color:var(--bronze); }
-        .nav-links { display:flex; align-items:center; gap:34px; }
-        .nav-links a {
-            font-family:var(--f-mono); font-size:0.67rem; letter-spacing:.12em; text-transform:uppercase;
-            text-decoration:none; color:rgba(255,255,255,.7); transition:color .3s;
-        }
-        nav.on .nav-links a { color:var(--ink-2); }
-        .nav-links a:hover { color:var(--bronze) !important; }
-        .nav-cta-btn {
-            padding:9px 22px !important;
-            border:1px solid rgba(255,255,255,.4) !important; color:#fff !important;
-        }
-        nav.on .nav-cta-btn { border-color:var(--bronze) !important; color:var(--bronze) !important; }
-        .nav-cta-btn:hover { background:rgba(255,255,255,.12) !important; }
-        nav.on .nav-cta-btn:hover { background:var(--bronze) !important; color:#fff !important; }
-        .hbg { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:5px; }
-        .hbg span { display:block; width:22px; height:1.5px; background:#fff; transition:.3s; }
-        nav.on .hbg span { background:var(--ink); }
+/* ── TICKER ── */
+.ticker { background:var(--dark); padding:13px 0; overflow:hidden; white-space:nowrap; }
+.ticker-track { display:inline-flex; gap:56px; animation:tick 28s linear infinite; }
+@keyframes tick { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+.ti { font-family:var(--mono); font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.38); display:inline-flex; align-items:center; gap:14px; }
+.ti::before { content:''; width:3px; height:3px; background:var(--blt); border-radius:50%; }
 
-        /* ── HERO ── */
-        .hero {
-            position:relative; height:100vh; min-height:660px;
-            display:flex; align-items:flex-end; padding:0 6% 8.5%;
-            overflow:hidden;
-        }
-        .hero-bg { position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=85&w=2031&auto=format&fit=crop') center/cover; }
-        .hero-bg::after {
-            content:''; position:absolute; inset:0;
-            background:linear-gradient(108deg,rgba(10,8,5,.84) 0%,rgba(10,8,5,.52) 55%,rgba(10,8,5,.14) 100%);
-        }
-        .hero-body { position:relative; z-index:2; max-width:660px; }
-        .hero-tag { display:inline-flex; align-items:center; gap:12px; font-family:var(--f-mono); font-size:0.63rem; letter-spacing:.18em; text-transform:uppercase; color:var(--bronze-lt); margin-bottom:22px; }
-        .hero-tag::before { content:''; width:26px; height:1px; background:var(--bronze-lt); }
-        .hero h1 { font-family:var(--f-serif); font-size:clamp(3rem,6.5vw,6.2rem); font-weight:600; line-height:1.03; color:#fff; margin-bottom:22px; }
-        .hero h1 em { font-style:italic; color:var(--bronze-lt); }
-        .hero-sub { font-size:1rem; font-weight:300; line-height:1.85; color:rgba(255,255,255,.62); max-width:460px; margin-bottom:40px; }
-        .hero-acts { display:flex; gap:12px; flex-wrap:wrap; }
-        .hero-side { position:absolute; bottom:8.5%; right:6%; z-index:2; display:flex; flex-direction:column; align-items:flex-end; gap:22px; }
-        .h-stat-n { font-family:var(--f-serif); font-size:2.8rem; font-weight:600; color:#fff; line-height:1; text-align:right; }
-        .h-stat-l { font-family:var(--f-mono); font-size:0.58rem; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.4); text-align:right; margin-top:3px; }
-        .scroll-hint { position:absolute; bottom:36px; left:50%; transform:translateX(-50%); z-index:2; display:flex; flex-direction:column; align-items:center; gap:5px; animation:bob 2.5s ease-in-out infinite; }
-        .scroll-hint span { font-family:var(--f-mono); font-size:0.57rem; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.35); }
-        .scroll-hint i { color:rgba(255,255,255,.35); font-size:0.72rem; }
-        @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(7px)} }
+/* ── SECTIONS ── */
+.section { padding:100px 6%; }
+.section-white { background:var(--white); }
+.section-soft { background:var(--soft); }
+.section-dark { background:var(--dark); }
 
-        /* ── TICKER ── */
-        .ticker { background:var(--bg-dark); padding:13px 0; overflow:hidden; white-space:nowrap; }
-        .ticker-inner { display:inline-flex; gap:56px; animation:tick 28s linear infinite; }
-        .ti { display:inline-flex; align-items:center; gap:14px; font-family:var(--f-mono); font-size:0.66rem; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.38); }
-        .td { width:3px; height:3px; background:var(--bronze-lt); border-radius:50%; flex-shrink:0; }
-        @keyframes tick { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+.sec-label {
+  font-family:var(--mono); font-size:.67rem; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--bronze);
+  display:flex; align-items:center; gap:12px; margin-bottom:10px;
+}
+.sec-label::before { content:''; width:28px; height:1px; background:var(--bronze); display:block; }
+.sec-title {
+  font-family:var(--serif); font-size:clamp(2rem,4vw,3.4rem);
+  font-weight:600; line-height:1.08; color:var(--ink);
+}
+.sec-title em { font-style:italic; color:var(--bronze); }
+.sec-title-white { color:#fff; }
+.sec-title-white em { color:var(--blt); }
+.sec-desc { font-size:.95rem; font-weight:300; line-height:1.9; color:var(--muted); margin-top:14px; }
+.sec-line { width:38px; height:1px; background:var(--bronze); display:block; margin:14px 0; }
 
-        /* ── SECTIONS ── */
-        section { padding:108px 6%; }
-        .sec-intro { max-width:540px; }
-        .sec-split { display:flex; justify-content:space-between; align-items:flex-end; gap:40px; flex-wrap:wrap; margin-bottom:66px; }
+/* ── SOBRE ── */
+.sobre-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; margin-top:60px; }
+.sobre-imgs { position:relative; height:520px; }
+.sobre-img1 { position:absolute; top:0; left:0; width:73%; height:73%; object-fit:cover; }
+.sobre-img2 { position:absolute; bottom:0; right:0; width:57%; height:52%; object-fit:cover; border:4px solid var(--white); }
+.sobre-badge {
+  position:absolute; top:28px; left:-14px;
+  background:var(--bronze); color:#fff; padding:18px 22px; text-align:center;
+}
+.sobre-badge strong { font-family:var(--serif); font-size:2.4rem; font-weight:600; line-height:1; display:block; }
+.sobre-badge span { font-family:var(--mono); font-size:.55rem; letter-spacing:.12em; text-transform:uppercase; opacity:.85; margin-top:3px; display:block; }
+.sobre-vals { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:32px; }
+.val { border-left:2px solid var(--blt); padding:8px 14px; }
+.val-title { font-family:var(--mono); font-size:.67rem; letter-spacing:.12em; text-transform:uppercase; color:var(--bronze); margin-bottom:4px; }
+.val-desc { font-size:.81rem; color:var(--muted); line-height:1.6; }
 
-        /* ── SOBRE ── */
-        .about { background:var(--bg-white); }
-        .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
-        .about-imgs { position:relative; height:540px; }
-        .a-img1 { position:absolute; top:0; left:0; width:73%; height:74%; object-fit:cover; display:block; }
-        .a-img2 { position:absolute; bottom:0; right:0; width:57%; height:52%; object-fit:cover; border:4px solid var(--bg-white); }
-        .a-badge { position:absolute; top:28px; left:-16px; background:var(--bronze); color:#fff; padding:18px 22px; text-align:center; }
-        .a-badge strong { font-family:var(--f-serif); font-size:2.4rem; font-weight:600; line-height:1; display:block; }
-        .a-badge span { font-family:var(--f-mono); font-size:0.55rem; letter-spacing:.12em; text-transform:uppercase; opacity:.85; margin-top:3px; display:block; }
-        .about-vals { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:34px; }
-        .val { border-left:2px solid var(--bronze-lt); padding:8px 14px; }
-        .val-n { font-family:var(--f-mono); font-size:0.67rem; letter-spacing:.12em; text-transform:uppercase; color:var(--bronze); margin-bottom:4px; }
-        .val-d { font-size:0.81rem; color:var(--ink-muted); line-height:1.6; }
+/* ── SERVIÇOS ── */
+.srv-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); margin-top:60px; }
+.srv-card {
+  background:var(--white); padding:48px 34px;
+  position:relative; overflow:hidden;
+  transition:background .4s;
+  border-bottom:2px solid transparent;
+}
+.srv-card:hover { background:var(--soft); border-bottom-color:var(--bronze); }
+.srv-num { font-family:var(--serif); font-size:4rem; font-weight:600; color:rgba(139,105,20,.06); position:absolute; top:16px; right:20px; line-height:1; }
+.srv-icon {
+  width:42px; height:42px; border:1px solid var(--bborder);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--bronze); margin-bottom:22px; transition:all .35s;
+}
+.srv-card:hover .srv-icon { background:var(--bronze); color:#fff; border-color:var(--bronze); }
+.srv-title { font-family:var(--serif); font-size:1.25rem; font-weight:600; color:var(--ink); margin-bottom:10px; }
+.srv-desc { font-size:.86rem; line-height:1.8; color:var(--muted); margin-bottom:20px; }
+.srv-list { list-style:none; }
+.srv-list li { font-size:.79rem; color:var(--ink2); padding:5px 0; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:9px; }
+.srv-list li::before { content:'–'; color:var(--bronze); flex-shrink:0; }
 
-        /* ── SERVIÇOS ── */
-        .services { background:var(--bg); }
-        .srv-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); }
-        .srv-card { background:var(--bg-white); padding:48px 34px; position:relative; overflow:hidden; transition:background .4s; }
-        .srv-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:var(--bronze); transform:scaleX(0); transform-origin:left; transition:transform .4s; }
-        .srv-card:hover { background:var(--bg-soft); }
-        .srv-card:hover::after { transform:scaleX(1); }
-        .srv-n { font-family:var(--f-serif); font-size:4rem; font-weight:600; color:rgba(139,105,20,.06); position:absolute; top:16px; right:20px; line-height:1; }
-        .srv-ico { width:42px; height:42px; border:1px solid var(--border-br); display:flex; align-items:center; justify-content:center; color:var(--bronze); margin-bottom:22px; transition:all .35s; }
-        .srv-card:hover .srv-ico { background:var(--bronze); color:#fff; border-color:var(--bronze); }
-        .srv-title { font-family:var(--f-serif); font-size:1.25rem; font-weight:600; color:var(--ink); margin-bottom:10px; }
-        .srv-desc { font-size:0.86rem; line-height:1.8; color:var(--ink-muted); margin-bottom:20px; }
-        .srv-list { list-style:none; }
-        .srv-list li { font-size:0.79rem; color:var(--ink-2); padding:5px 0; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:9px; }
-        .srv-list li::before { content:'–'; color:var(--bronze); flex-shrink:0; }
+/* ── PROCESSO ── */
+.proc-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:20px; margin-top:60px; position:relative; }
+.proc-grid::before { content:''; position:absolute; top:35px; left:8%; right:8%; height:1px; background:var(--border); }
+.proc-step { text-align:center; padding:0 10px; }
+.proc-num {
+  width:70px; height:70px; border:1px solid var(--bborder); border-radius:50%;
+  margin:0 auto 20px; display:flex; align-items:center; justify-content:center;
+  background:var(--white); position:relative; z-index:2;
+  font-family:var(--serif); font-size:1.5rem; font-weight:600; color:var(--bronze);
+  transition:all .4s;
+}
+.proc-step:hover .proc-num { background:var(--bronze); color:#fff; border-color:var(--bronze); }
+.proc-title { font-family:var(--mono); font-size:.69rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); margin-bottom:9px; }
+.proc-desc { font-size:.79rem; line-height:1.7; color:var(--muted); }
 
-        /* ── PROCESSO ── */
-        .process { background:var(--bg-white); }
-        .proc-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:0; margin-top:66px; position:relative; }
-        .proc-grid::before { content:''; position:absolute; top:35px; left:8%; right:8%; height:1px; background:var(--border); }
-        .proc-step { text-align:center; padding:0 14px; }
-        .proc-num { width:70px; height:70px; border:1px solid var(--border-br); border-radius:50%; margin:0 auto 20px; display:flex; align-items:center; justify-content:center; background:var(--bg-white); position:relative; z-index:2; font-family:var(--f-serif); font-size:1.5rem; font-weight:600; color:var(--bronze); transition:all .4s; }
-        .proc-step:hover .proc-num { background:var(--bronze); color:#fff; border-color:var(--bronze); }
-        .proc-title { font-family:var(--f-mono); font-size:0.69rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); margin-bottom:9px; }
-        .proc-desc { font-size:0.79rem; line-height:1.7; color:var(--ink-muted); }
+/* ── PORTFÓLIO ── */
+.pf-header { display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom:36px; }
+.pf-filters { display:flex; gap:6px; flex-wrap:wrap; }
+.pf-btn { padding:7px 16px; background:transparent; border:1px solid var(--border); font-family:var(--mono); font-size:.63rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); cursor:pointer; transition:all .3s; }
+.pf-btn.active,.pf-btn:hover { border-color:var(--bronze); color:var(--bronze); background:var(--bbg); }
+.pf-grid { display:grid; grid-template-columns:2fr 1fr 1fr; grid-template-rows:360px 300px; gap:3px; }
+.pf-item { position:relative; overflow:hidden; cursor:pointer; }
+.pf-item:first-child { grid-row:span 2; }
+.pf-img { width:100%; height:100%; object-fit:cover; transition:transform 1s cubic-bezier(.19,1,.22,1); }
+.pf-item:hover .pf-img { transform:scale(1.06); }
+.pf-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(to top,rgba(10,8,5,.88) 0%,rgba(10,8,5,.04) 55%);
+  padding:26px; display:flex; flex-direction:column; justify-content:flex-end;
+  opacity:0; transition:opacity .4s;
+}
+.pf-item:hover .pf-overlay { opacity:1; }
+.pf-tag { font-family:var(--mono); font-size:.59rem; letter-spacing:.17em; text-transform:uppercase; color:var(--blt); margin-bottom:5px; }
+.pf-name { font-family:var(--serif); font-size:1.25rem; font-weight:600; color:#fff; }
 
-        /* ── PORTFÓLIO ── */
-        .portfolio { background:var(--bg); padding-bottom:0; }
-        .pf-filters { display:flex; gap:6px; flex-wrap:wrap; }
-        .pf-btn { padding:7px 16px; background:transparent; border:1px solid var(--border); font-family:var(--f-mono); font-size:0.63rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-muted); cursor:pointer; transition:all .3s; }
-        .pf-btn.on, .pf-btn:hover { border-color:var(--bronze); color:var(--bronze); background:var(--bronze-bg); }
-        .pf-grid { display:grid; grid-template-columns:2fr 1fr 1fr; grid-template-rows:375px 305px; gap:3px; }
-        .pf-item { position:relative; overflow:hidden; cursor:pointer; }
-        .pf-item:first-child { grid-row:span 2; }
-        .pf-img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 1.1s cubic-bezier(.19,1,.22,1); }
-        .pf-item:hover .pf-img { transform:scale(1.06); }
-        .pf-over { position:absolute; inset:0; background:linear-gradient(to top,rgba(10,8,5,.88) 0%,rgba(10,8,5,.04) 55%); padding:26px; display:flex; flex-direction:column; justify-content:flex-end; opacity:0; transition:opacity .4s; }
-        .pf-item:hover .pf-over { opacity:1; }
-        .pf-tag { font-family:var(--f-mono); font-size:0.59rem; letter-spacing:.17em; text-transform:uppercase; color:var(--bronze-lt); margin-bottom:5px; }
-        .pf-ttl { font-family:var(--f-serif); font-size:1.25rem; font-weight:600; color:#fff; }
+/* ── FILOSOFIA ── */
+.philo-center { text-align:center; max-width:600px; margin:0 auto; }
+.philo-center .sec-label { justify-content:center; }
+.philo-center .sec-label::before { display:none; }
+.philo-center .sec-title { color:#fff; }
+.philo-center .sec-title em { color:var(--blt); }
+.philo-center .sec-line { background:var(--blt); margin:14px auto; }
+.philo-sub { font-size:.95rem; font-weight:300; line-height:1.85; color:rgba(255,255,255,.45); margin-top:14px; }
+.philo-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:60px; }
+.philo-card { background:rgba(255,255,255,.04); padding:42px 34px; border-top:2px solid transparent; transition:border-color .4s; }
+.philo-card:hover { border-top-color:var(--blt); }
+.philo-icon { color:var(--blt); font-size:1.3rem; margin-bottom:18px; }
+.philo-title { font-family:var(--serif); font-size:1.2rem; font-weight:600; color:#fff; margin-bottom:10px; }
+.philo-text { font-size:.86rem; line-height:1.8; color:rgba(255,255,255,.42); }
 
-        /* ── FILOSOFIA (fundo escuro) ── */
-        .philosophy { background:var(--bg-dark); padding:108px 6%; text-align:center; }
-        .philosophy .mono { color:var(--bronze-lt); }
-        .philosophy .mono::before { background:var(--bronze-lt); }
-        .philosophy .line { background:var(--bronze-lt); margin:14px auto; }
-        .philo-h { font-family:var(--f-serif); font-size:clamp(2.4rem,5vw,4rem); font-weight:600; color:#fff; line-height:1.08; }
-        .philo-h em { color:var(--bronze-lt); font-style:italic; }
-        .philo-sub { font-size:.95rem; font-weight:300; line-height:1.85; color:rgba(255,255,255,.45); max-width:540px; margin:16px auto 48px; }
-        .philo-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:66px; text-align:left; }
-        .philo-card { background:rgba(255,255,255,.04); padding:42px 34px; border-top:2px solid transparent; transition:border-color .4s; }
-        .philo-card:hover { border-top-color:var(--bronze-lt); }
-        .philo-ico { color:var(--bronze-lt); font-size:1.3rem; margin-bottom:18px; }
-        .philo-ttl { font-family:var(--f-serif); font-size:1.2rem; font-weight:600; color:#fff; margin-bottom:10px; }
-        .philo-txt { font-size:.86rem; line-height:1.8; color:rgba(255,255,255,.42); }
+/* ── CONTADORES ── */
+.counters { background:var(--soft); padding:70px 6%; display:grid; grid-template-columns:repeat(4,1fr); gap:0; }
+.cnt { text-align:center; padding:38px 18px; border-right:1px solid var(--border); }
+.cnt:last-child { border-right:none; }
+.cnt-num { font-family:var(--serif); font-size:3.8rem; font-weight:600; color:var(--ink); line-height:1; }
+.cnt-num sup { font-size:1.6rem; color:var(--bronze); }
+.cnt-lbl { font-family:var(--mono); font-size:.63rem; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); margin-top:8px; }
 
-        /* ── CONTADORES ── */
-        .counters { background:var(--bg-soft); padding:78px 6%; display:grid; grid-template-columns:repeat(4,1fr); gap:2px; }
-        .cnt-item { text-align:center; padding:38px 18px; border-right:1px solid var(--border); }
-        .cnt-item:last-child { border:none; }
-        .cnt-n { font-family:var(--f-serif); font-size:3.8rem; font-weight:600; color:var(--ink); line-height:1; }
-        .cnt-n sup { font-size:1.6rem; color:var(--bronze); }
-        .cnt-l { font-family:var(--f-mono); font-size:0.63rem; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-muted); margin-top:8px; }
+/* ── TESTEMUNHOS ── */
+.test-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:60px; }
+.test-card { background:var(--bg); padding:38px 30px; border:1px solid var(--border); border-bottom:2px solid transparent; transition:border-bottom-color .4s; }
+.test-card:hover { border-bottom-color:var(--bronze); }
+.test-stars { display:flex; gap:3px; margin-bottom:20px; color:var(--bronze); }
+.test-text { font-family:var(--serif); font-size:.97rem; font-style:italic; line-height:1.85; color:var(--ink2); margin-bottom:26px; }
+.test-author { display:flex; align-items:center; gap:13px; }
+.test-av { width:40px; height:40px; border-radius:50%; background:var(--bronze); color:#fff; display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:.95rem; font-weight:600; flex-shrink:0; }
+.test-name { font-family:var(--mono); font-size:.69rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); }
+.test-role { font-size:.76rem; color:var(--muted); margin-top:2px; }
 
-        /* ── TESTEMUNHOS ── */
-        .testimonials { background:var(--bg-white); }
-        .test-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:66px; }
-        .test-card { background:var(--bg); padding:38px 30px; border:1px solid var(--border); border-bottom:2px solid transparent; transition:border-bottom-color .4s; }
-        .test-card:hover { border-bottom-color:var(--bronze); }
-        .test-stars { display:flex; gap:3px; margin-bottom:20px; }
-        .test-stars i { color:var(--bronze); font-size:0.78rem; }
-        .test-txt { font-family:var(--f-serif); font-size:.97rem; font-style:italic; line-height:1.85; color:var(--ink-2); margin-bottom:26px; }
-        .test-auth { display:flex; align-items:center; gap:13px; }
-        .t-av { width:40px; height:40px; border-radius:50%; background:var(--bronze); color:#fff; display:flex; align-items:center; justify-content:center; font-family:var(--f-serif); font-size:.95rem; font-weight:600; flex-shrink:0; }
-        .t-name { font-family:var(--f-mono); font-size:.69rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); }
-        .t-role { font-size:.76rem; color:var(--ink-muted); margin-top:2px; }
+/* ── EQUIPA ── */
+.team-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; max-width:780px; margin-top:60px; }
+.founder-card { background:var(--white); border:1px solid var(--border); padding:48px 40px; position:relative; overflow:hidden; transition:box-shadow .4s; border-bottom:2px solid transparent; }
+.founder-card:hover { box-shadow:0 22px 48px rgba(26,23,19,.07); border-bottom-color:var(--bronze); }
+.founder-ini { width:68px; height:68px; border:1px solid var(--bborder); display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:1.7rem; font-weight:600; color:var(--bronze); margin-bottom:24px; }
+.founder-name { font-family:var(--serif); font-size:1.55rem; font-weight:600; color:var(--ink); margin-bottom:5px; }
+.founder-role { font-family:var(--mono); font-size:.63rem; letter-spacing:.15em; text-transform:uppercase; color:var(--bronze); margin-bottom:16px; }
+.founder-desc { font-size:.86rem; line-height:1.8; color:var(--muted); }
+.founder-soc { display:flex; gap:8px; margin-top:20px; }
+.founder-soc a { width:30px; height:30px; border:1px solid var(--bborder); display:flex; align-items:center; justify-content:center; color:var(--bronze); font-size:.68rem; transition:all .3s; }
+.founder-soc a:hover { background:var(--bronze); color:#fff; border-color:var(--bronze); }
 
-        /* ── EQUIPA ── */
-        .team { background:var(--bg); }
-        .team-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:66px; max-width:800px; }
-        .found-card { background:var(--bg-white); border:1px solid var(--border); padding:48px 40px; position:relative; overflow:hidden; transition:box-shadow .4s; }
-        .found-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:var(--bronze); transform:scaleX(0); transform-origin:left; transition:transform .4s; }
-        .found-card:hover { box-shadow:0 22px 48px rgba(26,23,19,.07); }
-        .found-card:hover::after { transform:scaleX(1); }
-        .found-ini { width:68px; height:68px; border:1px solid var(--border-br); display:flex; align-items:center; justify-content:center; font-family:var(--f-serif); font-size:1.7rem; font-weight:600; color:var(--bronze); margin-bottom:24px; }
-        .found-name { font-family:var(--f-serif); font-size:1.55rem; font-weight:600; color:var(--ink); margin-bottom:5px; }
-        .found-role { font-family:var(--f-mono); font-size:0.63rem; letter-spacing:.15em; text-transform:uppercase; color:var(--bronze); margin-bottom:16px; }
-        .found-desc { font-size:.86rem; line-height:1.8; color:var(--ink-muted); }
-        .found-soc { display:flex; gap:8px; margin-top:20px; }
-        .found-soc a { width:30px; height:30px; border:1px solid var(--border-br); display:flex; align-items:center; justify-content:center; color:var(--bronze); font-size:.68rem; text-decoration:none; transition:all .3s; }
-        .found-soc a:hover { background:var(--bronze); color:#fff; border-color:var(--bronze); }
+/* ── FAQ ── */
+.faq-grid { display:grid; grid-template-columns:1fr 1fr; gap:0 76px; margin-top:60px; }
+.faq-item { border-bottom:1px solid var(--border); }
+.faq-btn { width:100%; background:none; border:none; padding:22px 0; display:flex; justify-content:space-between; align-items:flex-start; gap:14px; cursor:pointer; text-align:left; }
+.faq-q { font-size:.93rem; font-weight:500; color:var(--ink); line-height:1.5; }
+.faq-icon { width:25px; height:25px; border:1px solid var(--bborder); display:flex; align-items:center; justify-content:center; color:var(--bronze); font-size:.63rem; flex-shrink:0; transition:all .3s; }
+.faq-item.open .faq-icon { background:var(--bronze); color:#fff; border-color:var(--bronze); transform:rotate(45deg); }
+.faq-answer { font-size:.86rem; line-height:1.85; color:var(--muted); max-height:0; overflow:hidden; transition:max-height .4s ease, padding .3s; }
+.faq-item.open .faq-answer { max-height:200px; padding-bottom:18px; }
 
-        /* ── FAQ ── */
-        .faq { background:var(--bg-white); }
-        .faq-grid { display:grid; grid-template-columns:1fr 1fr; gap:0 76px; margin-top:66px; }
-        .faq-item { border-bottom:1px solid var(--border); padding:22px 0; cursor:pointer; }
-        .faq-q-row { display:flex; justify-content:space-between; align-items:flex-start; gap:14px; }
-        .faq-q-txt { font-size:.93rem; font-weight:500; color:var(--ink); line-height:1.5; }
-        .faq-ico { flex-shrink:0; width:25px; height:25px; border:1px solid var(--border-br); display:flex; align-items:center; justify-content:center; color:var(--bronze); font-size:.63rem; transition:all .3s; }
-        .faq-item.open .faq-ico { background:var(--bronze); color:#fff; border-color:var(--bronze); transform:rotate(45deg); }
-        .faq-ans { font-size:.86rem; line-height:1.85; color:var(--ink-muted); max-height:0; overflow:hidden; transition:max-height .4s ease, margin-top .3s; }
-        .faq-item.open .faq-ans { max-height:180px; margin-top:13px; }
+/* ── CTA ── */
+.cta-section { background:var(--white); padding:120px 6%; text-align:center; position:relative; overflow:hidden; }
+.cta-section::before { content:''; position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1486325212027-8081e485255e?q=80&w=2070') center/cover; opacity:.04; }
+.cta-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:40px; position:relative; }
 
-        /* ── PARCEIROS ── */
-        .partners { background:var(--bg-soft); padding:56px 6%; }
-        .pt-lbl { font-family:var(--f-mono); font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-light); text-align:center; margin-bottom:34px; }
-        .pt-logos { display:flex; justify-content:center; align-items:center; gap:56px; flex-wrap:wrap; }
-        .pt-name { font-family:var(--f-mono); font-size:.88rem; font-weight:500; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-light); transition:color .3s; cursor:default; }
-        .pt-name:hover { color:var(--bronze); }
+/* ── CONTACTO ── */
+.ct-grid { display:grid; grid-template-columns:1fr 1.2fr; gap:80px; align-items:start; }
+.ct-items { display:flex; flex-direction:column; gap:22px; margin-top:40px; }
+.ct-item { display:flex; gap:14px; }
+.ct-ico { width:38px; height:38px; flex-shrink:0; border:1px solid var(--bborder); display:flex; align-items:center; justify-content:center; color:var(--bronze); }
+.ct-lbl { font-family:var(--mono); font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--bronze); margin-bottom:3px; }
+.ct-val { font-size:.88rem; color:var(--ink2); }
+.form-group { margin-bottom:16px; }
+.form-group label { display:block; font-family:var(--mono); font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); margin-bottom:7px; }
+.form-group input, .form-group select, .form-group textarea { width:100%; padding:11px 14px; background:var(--white); border:1px solid var(--border); color:var(--ink); font-family:var(--sans); font-size:.88rem; outline:none; resize:none; transition:border-color .3s; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color:var(--bronze); }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:13px; }
 
-        /* ── CTA ── */
-        .cta { position:relative; overflow:hidden; padding:136px 6%; background:var(--bg-white); text-align:center; }
-        .cta::before { content:''; position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1486325212027-8081e485255e?q=80&w=2070&auto=format&fit=crop') center/cover; opacity:.04; }
-        .cta-acts { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; position:relative; margin-top:40px; }
+/* ── PARCEIROS ── */
+.partners { background:var(--soft); padding:56px 6%; }
+.pt-label { font-family:var(--mono); font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--light); text-align:center; margin-bottom:34px; }
+.pt-logos { display:flex; justify-content:center; align-items:center; gap:56px; flex-wrap:wrap; }
+.pt-name { font-family:var(--mono); font-size:.88rem; font-weight:500; letter-spacing:.15em; text-transform:uppercase; color:var(--light); transition:color .3s; }
+.pt-name:hover { color:var(--bronze); }
 
-        /* ── CONTACTO ── */
-        .contact { background:var(--bg); }
-        .ct-grid { display:grid; grid-template-columns:1fr 1.2fr; gap:80px; align-items:start; }
-        .ct-details { display:flex; flex-direction:column; gap:22px; margin-top:42px; }
-        .ct-item { display:flex; gap:14px; }
-        .ct-ico { width:38px; height:38px; flex-shrink:0; border:1px solid var(--border-br); display:flex; align-items:center; justify-content:center; color:var(--bronze); font-size:.82rem; }
-        .ct-lbl { font-family:var(--f-mono); font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--bronze); margin-bottom:3px; }
-        .ct-val { font-size:.88rem; color:var(--ink-2); }
-        .form-g { margin-bottom:16px; }
-        .form-g label { display:block; font-family:var(--f-mono); font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:7px; }
-        .form-g input, .form-g select, .form-g textarea { width:100%; padding:11px 14px; background:var(--bg-white); border:1px solid var(--border); color:var(--ink); font-family:var(--f-sans); font-size:.88rem; outline:none; resize:none; transition:border-color .3s; }
-        .form-g input:focus, .form-g select:focus, .form-g textarea:focus { border-color:var(--bronze); }
-        .form-g select option { background:#fff; }
-        .form-row { display:grid; grid-template-columns:1fr 1fr; gap:13px; }
+/* ── FOOTER ── */
+footer { background:var(--dark); padding:78px 6% 34px; }
+.ft-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:56px; margin-bottom:56px; }
+.ft-logo { height:70px; width:auto; object-fit:contain; margin-bottom:16px; }
+.ft-tagline { font-size:.83rem; line-height:1.8; color:rgba(255,255,255,.3); max-width:270px; }
+.ft-soc { display:flex; gap:7px; margin-top:20px; }
+.ft-soc a { width:32px; height:32px; border:1px solid rgba(255,255,255,.09); display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.3); font-size:.68rem; transition:all .3s; }
+.ft-soc a:hover { background:var(--bronze); color:#fff; border-color:var(--bronze); }
+.ft-col h4 { font-family:var(--mono); font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--blt); margin-bottom:20px; }
+.ft-links { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.ft-links a { font-size:.83rem; color:rgba(255,255,255,.3); transition:color .3s; display:flex; align-items:center; gap:7px; }
+.ft-links a::before { content:'–'; color:rgba(196,165,90,.25); }
+.ft-links a:hover { color:rgba(255,255,255,.75); }
+.ft-bottom { border-top:1px solid rgba(255,255,255,.06); padding-top:26px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; }
+.ft-bottom p { font-size:.7rem; color:rgba(255,255,255,.18); }
+.ft-bottom a { color:rgba(196,165,90,.32); font-size:.7rem; transition:color .3s; }
+.ft-bottom a:hover { color:var(--blt); }
+.ft-credit { text-align:center; margin-top:16px; font-family:var(--mono); font-size:.56rem; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.09); }
+.ft-credit a { color:rgba(196,165,90,.18); transition:color .3s; }
+.ft-credit a:hover { color:rgba(196,165,90,.45); }
 
-        /* ── MAPA ── */
-        .map { height:370px; position:relative; overflow:hidden; }
-        .map img { width:100%; height:100%; object-fit:cover; filter:grayscale(25%); }
-        .map::after { content:''; position:absolute; inset:0; background:rgba(247,244,239,.25); }
-        .map-pin { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:2; text-align:center; }
-        .map-pin i { font-size:2.4rem; color:var(--bronze); }
-        .map-pin span { display:block; font-family:var(--f-mono); font-size:.63rem; letter-spacing:.15em; text-transform:uppercase; color:var(--ink); background:var(--bg-white); padding:4px 12px; margin-top:7px; }
+/* ── MODAL ── */
+.modal-overlay { position:fixed; inset:0; background:rgba(26,23,19,.72); display:none; align-items:center; justify-content:center; z-index:9999; backdrop-filter:blur(8px); }
+.modal-overlay.open { display:flex; }
+.modal { background:var(--white); border:1px solid var(--border); border-top:2px solid var(--bronze); padding:52px; max-width:460px; width:90%; position:relative; }
+.modal-close { position:absolute; top:16px; right:16px; background:none; border:none; color:var(--muted); cursor:pointer; font-size:.88rem; transition:color .3s; }
+.modal-close:hover { color:var(--bronze); }
+.modal h3 { font-family:var(--serif); font-size:1.7rem; font-weight:600; color:var(--ink); margin-bottom:7px; }
+.modal p { font-size:.86rem; color:var(--muted); margin-bottom:28px; }
+.modal-btns { display:flex; flex-direction:column; gap:9px; }
+.modal-btn { display:flex; align-items:center; justify-content:center; gap:10px; padding:13px; font-family:var(--mono); font-size:.69rem; letter-spacing:.12em; text-transform:uppercase; transition:all .3s; }
+.modal-btn-dark { background:var(--ink); color:#fff; }
+.modal-btn-dark:hover { background:var(--bronze); }
+.modal-btn-ol { background:transparent; border:1px solid var(--border); color:var(--ink2); }
+.modal-btn-ol:hover { border-color:var(--bronze); color:var(--bronze); }
 
-        /* ── FOOTER ── */
-        footer { background:var(--bg-dark); padding:78px 6% 34px; }
-        .ft-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:56px; margin-bottom:56px; }
-        .ft-brand-n { font-family:var(--f-serif); font-size:1.8rem; font-weight:600; color:#fff; margin-bottom:4px; }
-        .ft-brand-s { font-family:var(--f-mono); font-size:.52rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bronze-lt); }
-        .ft-brand p { font-size:.83rem; line-height:1.8; color:rgba(255,255,255,.3); margin-top:16px; max-width:270px; }
-        .ft-soc { display:flex; gap:7px; margin-top:20px; }
-        .ft-soc a { width:32px; height:32px; border:1px solid rgba(255,255,255,.09); display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.3); font-size:.68rem; text-decoration:none; transition:all .3s; }
-        .ft-soc a:hover { background:var(--bronze); color:#fff; border-color:var(--bronze); }
-        .ft-col h4 { font-family:var(--f-mono); font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bronze-lt); margin-bottom:20px; }
-        .ft-links { list-style:none; display:flex; flex-direction:column; gap:9px; }
-        .ft-links a { text-decoration:none; font-size:.83rem; color:rgba(255,255,255,.3); transition:color .3s; display:flex; align-items:center; gap:7px; }
-        .ft-links a::before { content:'–'; color:rgba(196,165,90,.25); flex-shrink:0; }
-        .ft-links a:hover { color:rgba(255,255,255,.75); }
-        .ft-btm { border-top:1px solid rgba(255,255,255,.06); padding-top:26px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; }
-        .ft-btm p { font-size:.7rem; color:rgba(255,255,255,.18); }
-        .ft-btm a { color:rgba(196,165,90,.32); text-decoration:none; font-size:.7rem; transition:color .3s; }
-        .ft-btm a:hover { color:var(--bronze-lt); }
-        .ft-credit { width:100%; text-align:center; margin-top:12px; font-family:var(--f-mono); font-size:.56rem; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.09); }
-        .ft-credit a { color:rgba(196,165,90,.18); text-decoration:none; transition:color .3s; }
-        .ft-credit a:hover { color:rgba(196,165,90,.45); }
-
-        /* ── MODAL ── */
-        .modal-wrap { position:fixed; inset:0; background:rgba(26,23,19,.72); display:none; align-items:center; justify-content:center; z-index:99000; backdrop-filter:blur(8px); }
-        .modal-wrap.open { display:flex; }
-        .modal-box { background:var(--bg-white); border:1px solid var(--border); border-top:2px solid var(--bronze); padding:52px; max-width:460px; width:90%; position:relative; }
-        .modal-x { position:absolute; top:16px; right:16px; background:none; border:none; color:var(--ink-muted); cursor:pointer; transition:color .3s; font-size:.88rem; }
-        .modal-x:hover { color:var(--bronze); }
-        .modal-line { width:34px; height:1px; background:var(--bronze); margin-bottom:18px; }
-        .modal-box h3 { font-family:var(--f-serif); font-size:1.7rem; font-weight:600; color:var(--ink); margin-bottom:7px; }
-        .modal-box p { font-size:.86rem; color:var(--ink-muted); margin-bottom:28px; }
-        .modal-acts { display:flex; flex-direction:column; gap:9px; }
-        .m-btn { display:flex; align-items:center; justify-content:center; gap:10px; padding:13px; font-family:var(--f-mono); font-size:.69rem; letter-spacing:.12em; text-transform:uppercase; text-decoration:none; transition:all .3s; }
-        .m-dk { background:var(--ink); color:#fff; }
-        .m-dk:hover { background:var(--bronze); }
-        .m-ol { background:transparent; border:1px solid var(--border); color:var(--ink-2); }
-        .m-ol:hover { border-color:var(--bronze); color:var(--bronze); }
-
-        /* ── REVEAL ── */
-        .r  { opacity:1; transform:none; transition:opacity .85s ease,transform .85s ease; }
-        .rl { opacity:1; transform:none; transition:opacity .85s ease,transform .85s ease; }
-        .rr { opacity:1; transform:none; transition:opacity .85s ease,transform .85s ease; }
-        .r.v,.rl.v,.rr.v { opacity:1; transform:none; }
-
-        /* ── RESPONSIVO ── */
-        @media (max-width:1024px) {
-            .srv-grid { grid-template-columns:1fr 1fr; }
-            .proc-grid { grid-template-columns:repeat(3,1fr); }
-            .proc-grid::before { display:none; }
-        }
-        @media (max-width:768px) {
-            section { padding:72px 5%; }
-            .hbg { display:flex; }
-            .nav-links { position:fixed; top:0; right:-100%; width:74%; height:100vh; background:var(--bg-white); flex-direction:column; align-items:flex-start; padding:88px 38px 38px; gap:22px; border-left:1px solid var(--border); transition:right .45s ease; z-index:8999; }
-            .nav-links.open { right:0; }
-            .nav-links a { color:var(--ink-2) !important; font-size:.95rem; }
-            .nav-cta-btn { border-color:var(--bronze) !important; color:var(--bronze) !important; }
-            .hero h1 { font-size:2.7rem; }
-            .hero-side { display:none; }
-            .about-grid { grid-template-columns:1fr; }
-            .a-img2 { display:none; }
-            .about-imgs { height:340px; }
-            .srv-grid { grid-template-columns:1fr; }
-            .pf-grid { grid-template-columns:1fr; grid-template-rows:auto; }
-            .pf-item:first-child { grid-row:auto; }
-            .pf-item { height:250px; }
-            .philo-grid { grid-template-columns:1fr; }
-            .counters { grid-template-columns:1fr 1fr; }
-            .cnt-item { border-right:none; border-bottom:1px solid var(--border); }
-            .test-grid { grid-template-columns:1fr; }
-            .team-grid { grid-template-columns:1fr; }
-            .faq-grid { grid-template-columns:1fr; gap:0; }
-            .ct-grid { grid-template-columns:1fr; }
-            .ft-grid { grid-template-columns:1fr 1fr; gap:34px; }
-            .proc-grid { grid-template-columns:1fr 1fr; }
-            .ft-btm { flex-direction:column; text-align:center; }
-        }
-    </style>
+/* ── RESPONSIVE ── */
+@media(max-width:1024px) {
+  .srv-grid { grid-template-columns:1fr 1fr; }
+  .proc-grid { grid-template-columns:repeat(3,1fr); }
+  .proc-grid::before { display:none; }
+  .ft-grid { grid-template-columns:1fr 1fr; gap:34px; }
+}
+@media(max-width:768px) {
+  .hamburger { display:flex; }
+  .nav-links { display:none; }
+  .sobre-grid,.ct-grid { grid-template-columns:1fr; gap:40px; }
+  .sobre-imgs { height:320px; }
+  .sobre-img2 { display:none; }
+  .srv-grid { grid-template-columns:1fr; }
+  .proc-grid { grid-template-columns:1fr 1fr; }
+  .pf-grid { grid-template-columns:1fr; grid-template-rows:auto; }
+  .pf-item { height:240px; }
+  .pf-item:first-child { grid-row:auto; }
+  .philo-grid { grid-template-columns:1fr; }
+  .counters { grid-template-columns:1fr 1fr; }
+  .cnt { border-bottom:1px solid var(--border); border-right:none; }
+  .test-grid { grid-template-columns:1fr; }
+  .team-grid { grid-template-columns:1fr; }
+  .faq-grid { grid-template-columns:1fr; gap:0; }
+  .hero-stats { display:none; }
+  .ft-grid { grid-template-columns:1fr; }
+}
+@media(max-width:480px) {
+  .form-row { grid-template-columns:1fr; }
+}
+</style>
 </head>
 <body>
 
-    <!-- MODAL -->
-    <div class="modal-wrap" id="modal">
-        <div class="modal-box">
-            <button class="modal-x" onclick="closeModal()"><i class="fas fa-times"></i></button>
-            <div class="modal-line"></div>
-            <h3>Iniciar Projecto</h3>
-            <p>Contacte o atelier para uma primeira conversa sobre a sua ideia. Sem compromisso.</p>
-            <div class="modal-acts">
-                <a href="/cdn-cgi/l/email-protection#92f0fef3fbe1f7f5e0fde7e2fbfcf6e7e1e6e0fbf7e1d2f5fff3fbfebcf1fdff" class="m-btn m-dk"><i class="fas fa-envelope"></i> Enviar E-mail</a>
-                <a href="https://wa.me/25886440354" class="m-btn m-ol" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-            </div>
-        </div>
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+    <div class="sec-line"></div>
+    <h3>Iniciar Projecto</h3>
+    <p>Contacte o atelier para uma primeira conversa sobre a sua ideia. Sem compromisso.</p>
+    <div class="modal-btns">
+      <a href="mailto:blaisegroupindustries@gmail.com" class="modal-btn modal-btn-dark"><i class="fas fa-envelope"></i> Enviar E-mail</a>
+      <a href="https://wa.me/25886440354" class="modal-btn modal-btn-ol" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
     </div>
+  </div>
+</div>
 
-    <!-- NAV -->
-    <nav id="nav" class="on">
-        <a href="#" class="nav-brand" style="display:flex;align-items:center;">
-            <img src="Zavanna_logo.png" alt="Zavanna Build" style="height:96px;width:auto;object-fit:contain;">
-        </a>
-        <div class="hbg" id="hbg" onclick="toggleMenu()"><span></span><span></span><span></span></div>
-        <div class="nav-links" id="navLinks">
-            <a href="#servicos" onclick="closeMenu()">Serviços</a>
-            <a href="#portfolio" onclick="closeMenu()">Portfólio</a>
-            <a href="#sobre" onclick="closeMenu()">Atelier</a>
-            <a href="#equipa" onclick="closeMenu()">Fundadores</a>
-            <a href="#contacto" onclick="closeMenu()">Contacto</a>
-            <a href="javascript:void(0)" class="nav-cta-btn" onclick="openModal();closeMenu()">Consulta →</a>
-        </div>
-    </nav>
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    <img src="Zavanna_logo.png" alt="Zavanna Build">
+  </a>
+  <button class="hamburger" onclick="toggleMob()"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#portfolio">Portfólio</a></li>
+    <li><a href="#sobre">Atelier</a></li>
+    <li><a href="#equipa">Fundadores</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#" class="nav-cta" onclick="openModal();return false;">Consulta →</a></li>
+  </ul>
+</nav>
+<div class="mob-nav" id="mobNav">
+  <a href="#servicos" onclick="closeMob()">Serviços</a>
+  <a href="#portfolio" onclick="closeMob()">Portfólio</a>
+  <a href="#sobre" onclick="closeMob()">Atelier</a>
+  <a href="#equipa" onclick="closeMob()">Fundadores</a>
+  <a href="#contacto" onclick="closeMob()">Contacto</a>
+  <a href="#" onclick="openModal();closeMob();return false;" style="color:var(--bronze);font-weight:600;">Consulta Gratuita →</a>
+</div>
 
-    <!-- HERO -->
-    <header class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-body">
-            <div class="hero-tag">Arquitectura — Moçambique</div>
-            <h1>Espaços que<br>definem quem <em>és</em>.</h1>
-            <p class="hero-sub">Da ideia ao projecto final, cada obra Zavanna é uma resposta precisa à identidade do cliente, à luz do lugar e ao peso do tempo.</p>
-            <div class="hero-acts">
-                <button class="btn btn-dk" onclick="openModal()">Iniciar Projecto</button>
-                <a href="#portfolio" class="btn btn-ol-wh">Ver Portfólio</a>
-            </div>
-        </div>
-        <div class="hero-side">
-            <div><div class="h-stat-n">2+</div><div class="h-stat-l">Anos de Prática</div></div>
-            <div><div class="h-stat-n">50+</div><div class="h-stat-l">Projectos</div></div>
-        </div>
-        <div class="scroll-hint"><span>Explorar</span><i class="fas fa-chevron-down"></i></div>
-    </header>
-
-    <!-- TICKER -->
-    <div class="ticker">
-        <div class="ticker-inner">
-            <span class="ti"><span class="td"></span>Arquitectura Residencial</span>
-            <span class="ti"><span class="td"></span>Arquitectura Comercial</span>
-            <span class="ti"><span class="td"></span>Design de Interiores</span>
-            <span class="ti"><span class="td"></span>Masterplanning</span>
-            <span class="ti"><span class="td"></span>Renders & Visualização 3D</span>
-            <span class="ti"><span class="td"></span>Licenciamento</span>
-            <span class="ti"><span class="td"></span>Reabilitação</span>
-            <span class="ti"><span class="td"></span>Arquitectura Residencial</span>
-            <span class="ti"><span class="td"></span>Arquitectura Comercial</span>
-            <span class="ti"><span class="td"></span>Design de Interiores</span>
-            <span class="ti"><span class="td"></span>Masterplanning</span>
-            <span class="ti"><span class="td"></span>Renders & Visualização 3D</span>
-            <span class="ti"><span class="td"></span>Licenciamento</span>
-            <span class="ti"><span class="td"></span>Reabilitação</span>
-        </div>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-body">
+    <div class="hero-tag">Arquitectura — Moçambique</div>
+    <h1 class="hero-title">Espaços que<br>definem quem <em>és</em>.</h1>
+    <p class="hero-sub">Cada obra Zavanna nasce de uma escuta atenta — da identidade do cliente, da luz do lugar e do peso do tempo.</p>
+    <div class="hero-btns">
+      <button class="btn btn-dark" onclick="openModal()">Iniciar Projecto</button>
+      <a href="#portfolio" class="btn btn-ghost">Ver Portfólio</a>
     </div>
+  </div>
+  <div class="hero-stats">
+    <div><div class="hstat-n">2+</div><div class="hstat-l">Anos de Prática</div></div>
+    <div><div class="hstat-n">50+</div><div class="hstat-l">Projectos</div></div>
+  </div>
+</section>
 
-    <!-- SOBRE -->
-    <section class="about" id="sobre">
-        <div class="about-grid">
-            <div class="about-imgs rl">
-                <img class="a-img1" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Projecto Zavanna">
-                <img class="a-img2" src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" alt="Interior">
-                <div class="a-badge"><strong>2+</strong><span>Anos</span></div>
-            </div>
-            <div class="rr">
-                <div class="mono">Sobre o Atelier</div>
-                <span class="line"></span>
-                <h2 class="h-serif">Arquitectura com<br>identidade <em>própria</em>.</h2>
-                <p class="body-text" style="margin-top:20px;">A Zavanna nasceu da convicção de que cada espaço deve reflectir quem o habita. Não projectamos edifícios genéricos — criamos ambientes que têm personalidade, memória e propósito.</p>
-                <p class="body-text" style="margin-top:12px;">Com base em Lichinga, trabalhamos com clientes em toda Moçambique, trazendo rigor técnico e visão criativa a cada projecto, independentemente da escala.</p>
-                <div class="about-vals">
-                    <div class="val"><div class="val-n">Identidade</div><div class="val-d">Cada projecto é único. Nunca aplicamos fórmulas.</div></div>
-                    <div class="val"><div class="val-n">Precisão</div><div class="val-d">Documentação técnica rigorosa em cada fase.</div></div>
-                    <div class="val"><div class="val-n">Diálogo</div><div class="val-d">O cliente é parte activa do processo criativo.</div></div>
-                    <div class="val"><div class="val-n">Contexto</div><div class="val-d">Arquitectura que respeita o lugar e o clima.</div></div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ti">Arquitectura Residencial</span>
+    <span class="ti">Arquitectura Comercial</span>
+    <span class="ti">Design de Interiores</span>
+    <span class="ti">Masterplanning</span>
+    <span class="ti">Renders & Visualização 3D</span>
+    <span class="ti">Licenciamento</span>
+    <span class="ti">Reabilitação</span>
+    <span class="ti">Arquitectura Residencial</span>
+    <span class="ti">Arquitectura Comercial</span>
+    <span class="ti">Design de Interiores</span>
+    <span class="ti">Masterplanning</span>
+    <span class="ti">Renders & Visualização 3D</span>
+    <span class="ti">Licenciamento</span>
+    <span class="ti">Reabilitação</span>
+  </div>
+</div>
 
-    <!-- SERVIÇOS -->
-    <section class="services" id="servicos">
-        <div class="sec-split">
-            <div class="r">
-                <div class="mono">O que fazemos</div>
-                <span class="line"></span>
-                <h2 class="h-serif">Serviços de<br><em>Arquitectura</em></h2>
-            </div>
-            <p class="body-text r" style="max-width:360px;transition-delay:.14s">Do esboço inicial à entrega do projecto executivo, acompanhamos cada fase com atenção e exigência.</p>
-        </div>
-        <div class="srv-grid">
-            <div class="srv-card r" style="transition-delay:.04s">
-                <span class="srv-n">01</span>
-                <div class="srv-ico"><i class="fas fa-drafting-compass"></i></div>
-                <h3 class="srv-title">Projecto Arquitectónico</h3>
-                <p class="srv-desc">Do programa funcional ao projecto de execução, com toda a documentação técnica necessária para licenciamento e obra.</p>
-                <ul class="srv-list"><li>Estudo prévio e anteprojecto</li><li>Projecto de execução completo</li><li>Plantas, cortes e alçados</li><li>Apoio ao licenciamento</li></ul>
-            </div>
-            <div class="srv-card r" style="transition-delay:.09s">
-                <span class="srv-n">02</span>
-                <div class="srv-ico"><i class="fas fa-cube"></i></div>
-                <h3 class="srv-title">Visualização 3D</h3>
-                <p class="srv-desc">Renders fotorrealistas e maquetes digitais que permitem ao cliente ver e aprovar o projecto antes da construção.</p>
-                <ul class="srv-list"><li>Renders exteriores e interiores</li><li>Tours virtuais 360°</li><li>Animações de apresentação</li><li>Maquetes digitais BIM</li></ul>
-            </div>
-            <div class="srv-card r" style="transition-delay:.14s">
-                <span class="srv-n">03</span>
-                <div class="srv-ico"><i class="fas fa-couch"></i></div>
-                <h3 class="srv-title">Design de Interiores</h3>
-                <p class="srv-desc">Concepção de ambientes interiores que prolongam a identidade arquitectónica com coerência estética e funcional.</p>
-                <ul class="srv-list"><li>Conceito e moodboard</li><li>Distribuição de espaços</li><li>Selecção de materiais e cores</li><li>Iluminação e mobiliário</li></ul>
-            </div>
-            <div class="srv-card r" style="transition-delay:.04s">
-                <span class="srv-n">04</span>
-                <div class="srv-ico"><i class="fas fa-city"></i></div>
-                <h3 class="srv-title">Masterplanning</h3>
-                <p class="srv-desc">Planeamento de conjuntos habitacionais e empreendimentos de maior escala com visão urbana integrada.</p>
-                <ul class="srv-list"><li>Plano de conjunto</li><li>Implantação e acessos</li><li>Regulamentação de loteamentos</li><li>Faseamento de execução</li></ul>
-            </div>
-            <div class="srv-card r" style="transition-delay:.09s">
-                <span class="srv-n">05</span>
-                <div class="srv-ico"><i class="fas fa-tools"></i></div>
-                <h3 class="srv-title">Reabilitação</h3>
-                <p class="srv-desc">Intervenção em edifícios existentes para actualizar, ampliar ou transformar espaços com respeito pela estrutura original.</p>
-                <ul class="srv-list"><li>Diagnóstico e levantamento</li><li>Projecto de alteração</li><li>Ampliações e adaptações</li><li>Requalificação de fachadas</li></ul>
-            </div>
-            <div class="srv-card r" style="transition-delay:.14s">
-                <span class="srv-n">06</span>
-                <div class="srv-ico"><i class="fas fa-file-signature"></i></div>
-                <h3 class="srv-title">Consultoria</h3>
-                <p class="srv-desc">Apoio técnico em processos de aprovação, viabilidade e assessoria para promotores e investidores.</p>
-                <ul class="srv-list"><li>Viabilidade urbanística</li><li>Submissão de processos</li><li>Assessoria a promotores</li><li>Revisão de projectos externos</li></ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROCESSO -->
-    <section class="process" id="processo">
-        <div style="text-align:center" class="r">
-            <div class="mono" style="justify-content:center;display:flex;">Como Trabalhamos</div>
-            <span class="line" style="margin:14px auto;"></span>
-            <h2 class="h-serif">O nosso <em>processo</em></h2>
-        </div>
-        <div class="proc-grid">
-            <div class="proc-step r" style="transition-delay:.04s"><div class="proc-num">01</div><h3 class="proc-title">Primeira Reunião</h3><p class="proc-desc">Ouvimos a sua ideia, programa e orçamento. Gratuito e sem compromisso.</p></div>
-            <div class="proc-step r" style="transition-delay:.09s"><div class="proc-num">02</div><h3 class="proc-title">Estudo Prévio</h3><p class="proc-desc">Opções de implantação e volumetria para alinhamento inicial com o cliente.</p></div>
-            <div class="proc-step r" style="transition-delay:.14s"><div class="proc-num">03</div><h3 class="proc-title">Anteprojecto</h3><p class="proc-desc">Solução arquitectónica com plantas, cortes e renders 3D para aprovação.</p></div>
-            <div class="proc-step r" style="transition-delay:.19s"><div class="proc-num">04</div><h3 class="proc-title">Proj. Execução</h3><p class="proc-desc">Documentação técnica completa para licenciamento e execução de obra.</p></div>
-            <div class="proc-step r" style="transition-delay:.24s"><div class="proc-num">05</div><h3 class="proc-title">Acompanhamento</h3><p class="proc-desc">Suporte técnico durante a obra para garantir fidelidade ao projecto.</p></div>
-        </div>
-    </section>
-
-    <!-- PORTFÓLIO -->
-    <section class="portfolio" id="portfolio" style="padding-bottom:0;">
-        <div class="sec-split" style="margin-bottom:36px;">
-            <div class="r">
-                <div class="mono">Portfólio</div>
-                <span class="line"></span>
-                <h2 class="h-serif">Projectos que<br>falam por <em>si</em></h2>
-            </div>
-            <div class="pf-filters r" style="transition-delay:.14s">
-                <button class="pf-btn on">Todos</button>
-                <button class="pf-btn">Residencial</button>
-                <button class="pf-btn">Comercial</button>
-                <button class="pf-btn">Interiores</button>
-            </div>
-        </div>
-        <div class="pf-grid r">
-            <div class="pf-item"><img class="pf-img" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Moradia"><div class="pf-over"><div class="pf-tag">Residencial — Lichinga</div><h3 class="pf-ttl">Moradia Contemporânea</h3></div></div>
-            <div class="pf-item"><img class="pf-img" src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" alt="Escritório"><div class="pf-over"><div class="pf-tag">Comercial — Nampula</div><h3 class="pf-ttl">Escritório Corporativo</h3></div></div>
-            <div class="pf-item"><img class="pf-img" src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop" alt="Villa"><div class="pf-over"><div class="pf-tag">Residencial — Lichinga</div><h3 class="pf-ttl">Villa Minimalista</h3></div></div>
-            <div class="pf-item"><img class="pf-img" src="https://images.unsplash.com/photo-1616137466211-f939a420be84?q=80&w=2832&auto=format&fit=crop" alt="Interior"><div class="pf-over"><div class="pf-tag">Interiores — Lichinga</div><h3 class="pf-ttl">Interior Residencial</h3></div></div>
-            <div class="pf-item"><img class="pf-img" src="https://images.unsplash.com/photo-1486325212027-8081e485255e?q=80&w=2070&auto=format&fit=crop" alt="Comercial"><div class="pf-over"><div class="pf-tag">Comercial — Moçambique</div><h3 class="pf-ttl">Edifício Comercial</h3></div></div>
-        </div>
-    </section>
-
-    <!-- FILOSOFIA -->
-    <section class="philosophy">
-        <div class="mono r" style="display:flex;justify-content:center;">A Nossa Visão</div>
-        <span class="line r" style="margin:14px auto;background:var(--bronze-lt);transition-delay:.05s"></span>
-        <h2 class="philo-h r" style="transition-delay:.1s">Arquitectura como <em>acto cultural</em>.</h2>
-        <p class="philo-sub r" style="transition-delay:.15s">Acreditamos que construir é um acto de responsabilidade cultural. Cada espaço que criamos deixa uma marca permanente no território e nas pessoas que o habitam.</p>
-        <div class="philo-grid r" style="transition-delay:.2s">
-            <div class="philo-card"><div class="philo-ico"><i class="fas fa-eye"></i></div><h3 class="philo-ttl">Visão</h3><p class="philo-txt">Antecipamos tendências e desafiamos o convencional, criando espaços que envelhecem com dignidade e permanecem relevantes ao longo do tempo.</p></div>
-            <div class="philo-card"><div class="philo-ico"><i class="fas fa-leaf"></i></div><h3 class="philo-ttl">Sustentabilidade</h3><p class="philo-txt">Integramos princípios bioclimáticos no design, aproveitando a luz natural, a ventilação e os materiais locais para reduzir o impacto ambiental.</p></div>
-            <div class="philo-card"><div class="philo-ico"><i class="fas fa-users"></i></div><h3 class="philo-ttl">Co-criação</h3><p class="philo-txt">O melhor projecto nasce do diálogo. Transformamos as necessidades e desejos do cliente em espaços reais com identidade genuína.</p></div>
-        </div>
-    </section>
-
-    <!-- CONTADORES -->
-    <div class="counters">
-        <div class="cnt-item r" style="transition-delay:.04s"><div class="cnt-n" data-target="50">0<sup>+</sup></div><div class="cnt-l">Projectos</div></div>
-        <div class="cnt-item r" style="transition-delay:.09s"><div class="cnt-n" data-target="30">0<sup>+</sup></div><div class="cnt-l">Clientes</div></div>
-        <div class="cnt-item r" style="transition-delay:.14s"><div class="cnt-n" data-target="3">0<sup>+</sup></div><div class="cnt-l">Anos de Prática</div></div>
-        <div class="cnt-item r" style="transition-delay:.19s"><div class="cnt-n" data-target="5">0<sup>★</sup></div><div class="cnt-l">Avaliação Média</div></div>
+<!-- SOBRE -->
+<section id="sobre" class="section section-white">
+  <div class="sobre-grid">
+    <div class="sobre-imgs">
+      <img class="sobre-img1" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070" alt="Projecto Zavanna">
+      <img class="sobre-img2" src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069" alt="Interior">
+      <div class="sobre-badge"><strong>2+</strong><span>Anos</span></div>
     </div>
-
-    <!-- TESTEMUNHOS -->
-    <section class="testimonials">
-        <div style="text-align:center" class="r">
-            <div class="mono" style="display:flex;justify-content:center;">Testemunhos</div>
-            <span class="line" style="margin:14px auto;"></span>
-            <h2 class="h-serif">O que dizem os<br>nossos <em>clientes</em></h2>
-        </div>
-        <div class="test-grid">
-            <div class="test-card r" style="transition-delay:.04s">
-                <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p class="test-txt">"A Zavanna transformou completamente a nossa ideia inicial. O resultado superou o que alguma vez imaginámos — um espaço que é genuinamente nosso."</p>
-                <div class="test-auth"><div class="t-av">AM</div><div><div class="t-name">António Machava</div><div class="t-role">Empresário — Lichinga</div></div></div>
-            </div>
-            <div class="test-card r" style="transition-delay:.09s">
-                <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p class="test-txt">"Processo claro, comunicação exemplar e um projecto final com um nível de detalhe que não esperava encontrar em Moçambique. Excelente trabalho."</p>
-                <div class="test-auth"><div class="t-av">FS</div><div><div class="t-name">Fátima Salamão</div><div class="t-role">Directora — Nampula</div></div></div>
-            </div>
-            <div class="test-card r" style="transition-delay:.14s">
-                <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p class="test-txt">"Desde a primeira reunião senti que estavam a ouvir de verdade. O projecto reflecte exactamente o que eu queria, com soluções que eu nunca teria pensado."</p>
-                <div class="test-auth"><div class="t-av">JN</div><div><div class="t-name">Joaquim Nhacolo</div><div class="t-role">Engenheiro — Lichinga</div></div></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- EQUIPA -->
-    <section class="team" id="equipa">
-        <div class="r">
-            <div class="mono">Os Fundadores</div>
-            <span class="line"></span>
-            <h2 class="h-serif">As mentes por detrás<br>do <em>atelier</em></h2>
-        </div>
-        <div class="team-grid">
-            <div class="found-card r" style="transition-delay:.04s">
-                <div class="found-ini">BB</div>
-                <div class="found-name">Bruno Blaise</div>
-                <div class="found-role">CEO & Co-fundador</div>
-                <p class="found-desc">Responsável pela direcção criativa e técnica do atelier. Lidera o processo de projecto de cada obra, da primeira ideia à entrega final.</p>
-                <div class="found-soc"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div>
-            </div>
-            <div class="found-card r" style="transition-delay:.09s">
-                <div class="found-ini">BL</div>
-                <div class="found-name">Blair Blaise</div>
-                <div class="found-role">Parceiro & Co-fundador</div>
-                <p class="found-desc">Responsável pela estratégia comercial, relação com clientes e desenvolvimento do grupo BGI — Blaise Group Industries.</p>
-                <div class="found-soc"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="faq">
-        <div style="text-align:center" class="r">
-            <div class="mono" style="display:flex;justify-content:center;">Perguntas Frequentes</div>
-            <span class="line" style="margin:14px auto;"></span>
-            <h2 class="h-serif">Dúvidas <em>comuns</em></h2>
-        </div>
-        <div class="faq-grid">
-            <div class="faq-item r" onclick="toggleFaq(this)"><div class="faq-q-row"><span class="faq-q-txt">Quanto custa um projecto de arquitectura?</span><div class="faq-ico"><i class="fas fa-plus"></i></div></div><p class="faq-ans">O custo varia conforme dimensão, complexidade e fase do projecto. Fazemos sempre uma proposta personalizada após a reunião inicial. A primeira consulta é gratuita e sem compromisso.</p></div>
-            <div class="faq-item r" style="transition-delay:.04s" onclick="toggleFaq(this)"><div class="faq-q-row"><span class="faq-q-txt">Trabalham fora de Lichinga?</span><div class="faq-ico"><i class="fas fa-plus"></i></div></div><p class="faq-ans">Sim. Trabalhamos em toda Moçambique. Muitas fases podem ser desenvolvidas remotamente, com deslocações pontuais para visitas ao terreno e reuniões presenciais.</p></div>
-            <div class="faq-item r" onclick="toggleFaq(this)"><div class="faq-q-row"><span class="faq-q-txt">Quanto tempo demora um projecto?</span><div class="faq-ico"><i class="fas fa-plus"></i></div></div><p class="faq-ans">Depende da escala e complexidade. Um projecto de moradia unifamiliar leva tipicamente entre 6 a 12 semanas desde o arranque até ao projecto de execução completo.</p></div>
-            <div class="faq-item r" style="transition-delay:.04s" onclick="toggleFaq(this)"><div class="faq-q-row"><span class="faq-q-txt">A Zavanna acompanha a construção?</span><div class="faq-ico"><i class="fas fa-plus"></i></div></div><p class="faq-ans">Sim, oferecemos o serviço de direcção e fiscalização de obra como complemento ao projecto, garantindo que a construção respeita fielmente o projecto aprovado.</p></div>
-            <div class="faq-item r" onclick="toggleFaq(this)"><div class="faq-q-row"><span class="faq-q-txt">Fazem apenas o projecto ou também o interior?</span><div class="faq-ico"><i class="fas fa-plus"></i></div></div><p class="faq-ans">Fazemos ambos. Podemos desenvolver o projecto arquitectónico completo e, em continuidade, o projecto de design de interiores — garantindo coerência total entre os dois.</p></div>
-            <div class="faq-item r" style="transition-delay:.04s" onclick="toggleFaq(this)"><div class="faq-q-row"><span class="faq-q-txt">Como obter um orçamento?</span><div class="faq-ico"><i class="fas fa-plus"></i></div></div><p class="faq-ans">Basta contactar-nos por e-mail, WhatsApp ou pelo formulário desta página. Agendamos uma primeira conversa e enviamos proposta em 3 dias úteis.</p></div>
-        </div>
-    </section>
-
-    <!-- PARCEIROS -->
-    <div class="partners">
-        <p class="pt-lbl">Ferramentas & Parceiros</p>
-        <div class="pt-logos">
-            <span class="pt-name">Autodesk</span>
-            <span class="pt-name">Archicad</span>
-            <span class="pt-name">Lumion</span>
-            <span class="pt-name">Cimpor</span>
-            <span class="pt-name">Sika</span>
-            <span class="pt-name">Weber</span>
-        </div>
+    <div>
+      <div class="sec-label">Sobre o Atelier</div>
+      <div class="sec-line"></div>
+      <h2 class="sec-title">Arquitectura com<br>identidade <em>própria</em>.</h2>
+      <p class="sec-desc">A Zavanna nasceu da convicção de que cada espaço deve reflectir quem o habita. Não projectamos edifícios genéricos — criamos ambientes com personalidade, memória e propósito.</p>
+      <p class="sec-desc" style="margin-top:12px;">Com base em Lichinga, trabalhamos com clientes em toda Moçambique, trazendo rigor técnico e visão criativa a cada projecto.</p>
+      <div class="sobre-vals">
+        <div class="val"><div class="val-title">Identidade</div><div class="val-desc">Cada projecto é único. Nunca aplicamos fórmulas.</div></div>
+        <div class="val"><div class="val-title">Precisão</div><div class="val-desc">Documentação técnica rigorosa em cada fase.</div></div>
+        <div class="val"><div class="val-title">Diálogo</div><div class="val-desc">O cliente é parte activa do processo criativo.</div></div>
+        <div class="val"><div class="val-title">Contexto</div><div class="val-desc">Arquitectura que respeita o lugar e o clima.</div></div>
+      </div>
     </div>
+  </div>
+</section>
 
-    <!-- CTA -->
-    <section class="cta">
-        <div class="mono r" style="display:flex;justify-content:center;">Pronto para começar?</div>
-        <span class="line r" style="margin:14px auto;transition-delay:.05s"></span>
-        <h2 class="h-serif r" style="font-size:clamp(2.4rem,5vw,4.2rem);transition-delay:.1s">O seu projecto<br>começa <em>aqui</em>.</h2>
-        <p class="body-text r" style="max-width:480px;margin:16px auto 0;text-align:center;transition-delay:.15s">A primeira conversa é gratuita. Conte-nos a sua ideia e nós tratamos do resto — com rigor, visão e identidade.</p>
-        <div class="cta-acts r" style="transition-delay:.2s">
-            <button class="btn btn-dk" onclick="openModal()">Solicitar Consulta</button>
-            <a href="/cdn-cgi/l/email-protection#50323c3139233537223f2520393e342523242239352310373d31393c7e333f3d" class="btn btn-ol">Enviar E-mail</a>
-        </div>
-    </section>
-
-    <!-- CONTACTO -->
-    <section class="contact" id="contacto">
-        <div class="ct-grid">
-            <div class="rl">
-                <div class="mono">Contacto</div>
-                <span class="line"></span>
-                <h2 class="h-serif">Vamos criar<br>algo <em>juntos</em>.</h2>
-                <p class="body-text" style="margin-top:14px;">Estamos em Lichinga e disponíveis para projectos em todo o país. Resposta garantida em 24 horas.</p>
-                <div class="ct-details">
-                    <div class="ct-item"><div class="ct-ico"><i class="fas fa-map-marker-alt"></i></div><div><div class="ct-lbl">Localização</div><div class="ct-val">Lichinga, Niassa, Moçambique</div></div></div>
-                    <div class="ct-item"><div class="ct-ico"><i class="fab fa-whatsapp"></i></div><div><div class="ct-lbl">WhatsApp</div><div class="ct-val">+258 86 440 354</div></div></div>
-                    <div class="ct-item"><div class="ct-ico"><i class="fas fa-envelope"></i></div><div><div class="ct-lbl">E-mail</div><div class="ct-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="26444a474f554341544953564f4842535552544f435566414b474f4a0845494b">[email&#160;protected]</a></div></div></div>
-                    <div class="ct-item"><div class="ct-ico"><i class="fas fa-clock"></i></div><div><div class="ct-lbl">Horário</div><div class="ct-val">Segunda a Sexta, 08h00 – 17h30</div></div></div>
-                </div>
-            </div>
-            <div class="rr">
-                <div class="form-row">
-                    <div class="form-g"><label>Nome</label><input type="text" placeholder="O seu nome"></div>
-                    <div class="form-g"><label>Telefone</label><input type="tel" placeholder="+258 ..."></div>
-                </div>
-                <div class="form-g"><label>E-mail</label><input type="email" placeholder="o.seu@email.com"></div>
-                <div class="form-g">
-                    <label>Tipo de Projecto</label>
-                    <select>
-                        <option value="">Seleccione...</option>
-                        <option>Moradia Residencial</option>
-                        <option>Edifício Comercial</option>
-                        <option>Design de Interiores</option>
-                        <option>Masterplanning</option>
-                        <option>Reabilitação</option>
-                        <option>Consultoria</option>
-                    </select>
-                </div>
-                <div class="form-g"><label>Mensagem</label><textarea rows="5" placeholder="Descreva o seu projecto, localização e prazo..."></textarea></div>
-                <button class="btn btn-dk" style="width:100%;justify-content:center;" onclick="openModal()">Enviar Mensagem <i class="fas fa-arrow-right"></i></button>
-            </div>
-        </div>
-    </section>
-
-    <!-- MAPA -->
-    <div class="map">
-        <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2074&auto=format&fit=crop" alt="Lichinga">
-        <div class="map-pin"><i class="fas fa-map-marker-alt"></i><span>Lichinga, Moçambique</span></div>
+<!-- SERVIÇOS -->
+<section id="servicos" class="section">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;margin-bottom:0;">
+    <div>
+      <div class="sec-label">O que fazemos</div>
+      <div class="sec-line"></div>
+      <h2 class="sec-title">Serviços de<br><em>Arquitectura</em></h2>
     </div>
+    <p class="sec-desc" style="max-width:360px;">Do esboço inicial à entrega do projecto executivo, acompanhamos cada fase com atenção e exigência.</p>
+  </div>
+  <div class="srv-grid">
+    <div class="srv-card">
+      <span class="srv-num">01</span>
+      <div class="srv-icon"><i class="fas fa-drafting-compass"></i></div>
+      <h3 class="srv-title">Projecto Arquitectónico</h3>
+      <p class="srv-desc">Do programa funcional ao projecto de execução, com toda a documentação técnica para licenciamento e obra.</p>
+      <ul class="srv-list"><li>Estudo prévio e anteprojecto</li><li>Projecto de execução completo</li><li>Plantas, cortes e alçados</li><li>Apoio ao licenciamento</li></ul>
+    </div>
+    <div class="srv-card">
+      <span class="srv-num">02</span>
+      <div class="srv-icon"><i class="fas fa-cube"></i></div>
+      <h3 class="srv-title">Visualização 3D</h3>
+      <p class="srv-desc">Renders fotorrealistas e maquetes digitais que permitem ver e aprovar o projecto antes da construção.</p>
+      <ul class="srv-list"><li>Renders exteriores e interiores</li><li>Tours virtuais 360°</li><li>Animações de apresentação</li><li>Maquetes digitais BIM</li></ul>
+    </div>
+    <div class="srv-card">
+      <span class="srv-num">03</span>
+      <div class="srv-icon"><i class="fas fa-couch"></i></div>
+      <h3 class="srv-title">Design de Interiores</h3>
+      <p class="srv-desc">Concepção de ambientes interiores que prolongam a identidade arquitectónica com coerência estética e funcional.</p>
+      <ul class="srv-list"><li>Conceito e moodboard</li><li>Distribuição de espaços</li><li>Selecção de materiais e cores</li><li>Iluminação e mobiliário</li></ul>
+    </div>
+    <div class="srv-card">
+      <span class="srv-num">04</span>
+      <div class="srv-icon"><i class="fas fa-city"></i></div>
+      <h3 class="srv-title">Masterplanning</h3>
+      <p class="srv-desc">Planeamento de conjuntos habitacionais e empreendimentos de maior escala com visão urbana integrada.</p>
+      <ul class="srv-list"><li>Plano de conjunto</li><li>Implantação e acessos</li><li>Regulamentação de loteamentos</li><li>Faseamento de execução</li></ul>
+    </div>
+    <div class="srv-card">
+      <span class="srv-num">05</span>
+      <div class="srv-icon"><i class="fas fa-tools"></i></div>
+      <h3 class="srv-title">Reabilitação</h3>
+      <p class="srv-desc">Intervenção em edifícios existentes para actualizar, ampliar ou transformar espaços com respeito pela estrutura original.</p>
+      <ul class="srv-list"><li>Diagnóstico e levantamento</li><li>Projecto de alteração</li><li>Ampliações e adaptações</li><li>Requalificação de fachadas</li></ul>
+    </div>
+    <div class="srv-card">
+      <span class="srv-num">06</span>
+      <div class="srv-icon"><i class="fas fa-file-signature"></i></div>
+      <h3 class="srv-title">Consultoria</h3>
+      <p class="srv-desc">Apoio técnico em processos de aprovação, viabilidade e assessoria para promotores e investidores.</p>
+      <ul class="srv-list"><li>Viabilidade urbanística</li><li>Submissão de processos</li><li>Assessoria a promotores</li><li>Revisão de projectos externos</li></ul>
+    </div>
+  </div>
+</section>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="ft-grid">
-            <div class="ft-brand">
-                <img src="Zavanna_logo.png" alt="Zavanna Build" style="height:90px;width:auto;object-fit:contain;margin-bottom:12px;display:block;">
-                <p>Arquitectura com identidade, rigor e visão. Baseados em Lichinga, projectamos em toda Moçambique.</p>
-                <div class="ft-soc">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://wa.me/25886440354" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
-            <div class="ft-col">
-                <h4>Serviços</h4>
-                <ul class="ft-links">
-                    <li><a href="#servicos">Projecto Arquitectónico</a></li>
-                    <li><a href="#servicos">Visualização 3D</a></li>
-                    <li><a href="#servicos">Design de Interiores</a></li>
-                    <li><a href="#servicos">Masterplanning</a></li>
-                    <li><a href="#servicos">Reabilitação</a></li>
-                    <li><a href="#servicos">Consultoria</a></li>
-                </ul>
-            </div>
-            <div class="ft-col">
-                <h4>Atelier</h4>
-                <ul class="ft-links">
-                    <li><a href="#sobre">Sobre a Zavanna</a></li>
-                    <li><a href="#portfolio">Portfólio</a></li>
-                    <li><a href="#equipa">Os Fundadores</a></li>
-                    <li><a href="#processo">O Nosso Processo</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                </ul>
-            </div>
-            <div class="ft-col">
-                <h4>Contacto</h4>
-                <ul class="ft-links">
-                    <li><a href="https://wa.me/25886440354">+258 86 440 354</a></li>
-                    <li><a href="/cdn-cgi/l/email-protection#7f1d131e160c1a180d100a0f16111b0a0c0b0d161a0c3f18121e1613511c1012">E-mail</a></li>
-                    <li><a href="#">Lichinga, Niassa</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="ft-btm">
-            <p>© 2026 Zavanna — Todos os direitos reservados.</p>
-            <div style="display:flex;gap:18px;"><a href="#">Privacidade</a><a href="#">Termos</a></div>
-        </div>
-        <div class="ft-credit">Uma empresa do grupo <a href="#">Blaise Group Industries (BGI)</a> — Desenvolvido pela <a href="#">agência BGI</a></div>
-    </footer>
+<!-- PROCESSO -->
+<section class="section section-white">
+  <div style="text-align:center;margin-bottom:0;">
+    <div class="sec-label" style="justify-content:center;"><span style="width:22px;height:1px;background:var(--bronze);display:block;"></span>Como Trabalhamos</div>
+    <div class="sec-line" style="margin:14px auto;"></div>
+    <h2 class="sec-title">O nosso <em>processo</em></h2>
+  </div>
+  <div class="proc-grid">
+    <div class="proc-step"><div class="proc-num">01</div><h3 class="proc-title">Primeira Reunião</h3><p class="proc-desc">Ouvimos a sua ideia, programa e orçamento. Gratuito e sem compromisso.</p></div>
+    <div class="proc-step"><div class="proc-num">02</div><h3 class="proc-title">Estudo Prévio</h3><p class="proc-desc">Opções de implantação e volumetria para alinhamento inicial com o cliente.</p></div>
+    <div class="proc-step"><div class="proc-num">03</div><h3 class="proc-title">Anteprojecto</h3><p class="proc-desc">Solução arquitectónica com plantas, cortes e renders 3D para aprovação.</p></div>
+    <div class="proc-step"><div class="proc-num">04</div><h3 class="proc-title">Proj. Execução</h3><p class="proc-desc">Documentação técnica completa para licenciamento e execução de obra.</p></div>
+    <div class="proc-step"><div class="proc-num">05</div><h3 class="proc-title">Acompanhamento</h3><p class="proc-desc">Suporte técnico durante a obra para garantir fidelidade ao projecto.</p></div>
+  </div>
+</section>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        window.addEventListener('scroll', () => { document.getElementById('nav').classList.add('on'); });
-        function toggleMenu() { document.getElementById('navLinks').classList.toggle('open'); }
-        function closeMenu() { document.getElementById('navLinks').classList.remove('open'); }
-        function openModal() { document.getElementById('modal').classList.add('open'); }
-        function closeModal() { document.getElementById('modal').classList.remove('open'); }
-        document.getElementById('modal').addEventListener('click', e => { if (e.target === document.getElementById('modal')) closeModal(); });
-        document.querySelectorAll('.pf-btn').forEach(b => b.addEventListener('click', function() { document.querySelectorAll('.pf-btn').forEach(x => x.classList.remove('on')); this.classList.add('on'); }));
-        function toggleFaq(el) { const o = el.classList.contains('open'); document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open')); if (!o) el.classList.add('open'); }
-        const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('v'); obs.unobserve(x.target); } }), { threshold: 0.08 });
-        document.querySelectorAll('.r,.rl,.rr').forEach(el => obs.observe(el));
-        function animCounter(el) {
-            const t = parseInt(el.dataset.target), sup = el.querySelector('sup').outerHTML;
-            let n = 0; const s = Math.ceil(t / 35);
-            const i = 
-            const i = setInterval(() => { n = Math.min(n + s, t); el.innerHTML = n + sup; if (n >= t) clearInterval(i); }, 45);
-        }
-        const cObs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) { animCounter(x.target); cObs.unobserve(x.target); } }), { threshold: 0.5 });
-        document.querySelectorAll('.cnt-n[data-target]').forEach(el => cObs.observe(el));
-    </script>
+<!-- PORTFÓLIO -->
+<section id="portfolio" class="section">
+  <div class="pf-header">
+    <div>
+      <div class="sec-label">Portfólio</div>
+      <div class="sec-line"></div>
+      <h2 class="sec-title">Projectos que<br>falam por <em>si</em></h2>
+    </div>
+    <div class="pf-filters">
+      <button class="pf-btn active" onclick="setPf(this)">Todos</button>
+      <button class="pf-btn" onclick="setPf(this)">Residencial</button>
+      <button class="pf-btn" onclick="setPf(this)">Comercial</button>
+      <button class="pf-btn" onclick="setPf(this)">Interiores</button>
+    </div>
+  </div>
+  <div class="pf-grid">
+    <div class="pf-item"><img class="pf-img" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070" alt="Moradia"><div class="pf-overlay"><div class="pf-tag">Residencial — Lichinga</div><h3 class="pf-name">Moradia Contemporânea</h3></div></div>
+    <div class="pf-item"><img class="pf-img" src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069" alt="Escritório"><div class="pf-overlay"><div class="pf-tag">Comercial — Nampula</div><h3 class="pf-name">Escritório Corporativo</h3></div></div>
+    <div class="pf-item"><img class="pf-img" src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070" alt="Villa"><div class="pf-overlay"><div class="pf-tag">Residencial — Lichinga</div><h3 class="pf-name">Villa Minimalista</h3></div></div>
+    <div class="pf-item"><img class="pf-img" src="https://images.unsplash.com/photo-1616137466211-f939a420be84?q=80&w=2832" alt="Interior"><div class="pf-overlay"><div class="pf-tag">Interiores — Lichinga</div><h3 class="pf-name">Interior Residencial</h3></div></div>
+    <div class="pf-item"><img class="pf-img" src="https://images.unsplash.com/photo-1486325212027-8081e485255e?q=80&w=2070" alt="Comercial"><div class="pf-overlay"><div class="pf-tag">Comercial — Moçambique</div><h3 class="pf-name">Edifício Comercial</h3></div></div>
+  </div>
+</section>
+
+<!-- FILOSOFIA -->
+<section class="section section-dark">
+  <div class="philo-center">
+    <div class="sec-label" style="justify-content:center;color:var(--blt);">A Nossa Visão</div>
+    <div class="sec-line" style="background:var(--blt);margin:14px auto;"></div>
+    <h2 class="sec-title sec-title-white">Arquitectura como <em>acto cultural</em>.</h2>
+    <p class="philo-sub">Acreditamos que construir é um acto de responsabilidade cultural. Cada espaço que criamos deixa uma marca permanente no território e nas pessoas que o habitam.</p>
+  </div>
+  <div class="philo-grid">
+    <div class="philo-card"><div class="philo-icon"><i class="fas fa-eye"></i></div><h3 class="philo-title">Visão</h3><p class="philo-text">Antecipamos tendências e desafiamos o convencional, criando espaços que envelhecem com dignidade e permanecem relevantes ao longo do tempo.</p></div>
+    <div class="philo-card"><div class="philo-icon"><i class="fas fa-leaf"></i></div><h3 class="philo-title">Sustentabilidade</h3><p class="philo-text">Integramos princípios bioclimáticos no design, aproveitando a luz natural, a ventilação e os materiais locais para reduzir o impacto ambiental.</p></div>
+    <div class="philo-card"><div class="philo-icon"><i class="fas fa-users"></i></div><h3 class="philo-title">Co-criação</h3><p class="philo-text">O melhor projecto nasce do diálogo. Transformamos as necessidades e desejos do cliente em espaços reais com identidade genuína.</p></div>
+  </div>
+</section>
+
+<!-- CONTADORES -->
+<div class="counters">
+  <div class="cnt"><div class="cnt-num"><span id="c1">50</span><sup>+</sup></div><div class="cnt-lbl">Projectos</div></div>
+  <div class="cnt"><div class="cnt-num"><span id="c2">30</span><sup>+</sup></div><div class="cnt-lbl">Clientes</div></div>
+  <div class="cnt"><div class="cnt-num"><span id="c3">3</span><sup>+</sup></div><div class="cnt-lbl">Anos de Prática</div></div>
+  <div class="cnt"><div class="cnt-num"><span id="c4">5</span><sup>★</sup></div><div class="cnt-lbl">Avaliação Média</div></div>
+</div>
+
+<!-- TESTEMUNHOS -->
+<section class="section section-white">
+  <div style="text-align:center;">
+    <div class="sec-label" style="justify-content:center;"><span style="width:22px;height:1px;background:var(--bronze);display:block;"></span>Testemunhos</div>
+    <div class="sec-line" style="margin:14px auto;"></div>
+    <h2 class="sec-title">O que dizem os<br>nossos <em>clientes</em></h2>
+  </div>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+      <p class="test-text">"A Zavanna transformou completamente a nossa ideia inicial. O resultado superou o que alguma vez imaginámos — um espaço que é genuinamente nosso."</p>
+      <div class="test-author"><div class="test-av">AM</div><div><div class="test-name">António Machava</div><div class="test-role">Empresário — Lichinga</div></div></div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+      <p class="test-text">"Processo claro, comunicação exemplar e um projecto final com um nível de detalhe que não esperava encontrar em Moçambique. Excelente trabalho."</p>
+      <div class="test-author"><div class="test-av">FS</div><div><div class="test-name">Fátima Salamão</div><div class="test-role">Directora — Nampula</div></div></div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+      <p class="test-text">"Desde a primeira reunião senti que estavam a ouvir de verdade. O projecto reflecte exactamente o que eu queria, com soluções que eu nunca teria pensado."</p>
+      <div class="test-author"><div class="test-av">JN</div><div><div class="test-name">Joaquim Nhacolo</div><div class="test-role">Engenheiro — Lichinga</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPA -->
+<section id="equipa" class="section">
+  <div class="sec-label">Os Fundadores</div>
+  <div class="sec-line"></div>
+  <h2 class="sec-title">As mentes por detrás<br>do <em>atelier</em></h2>
+  <div class="team-grid">
+    <div class="founder-card">
+      <div class="founder-ini">BB</div>
+      <div class="founder-name">Bruno Blaise</div>
+      <div class="founder-role">CEO & Co-fundador</div>
+      <p class="founder-desc">Responsável pela direcção criativa e técnica do atelier. Lidera o processo de projecto de cada obra, da primeira ideia à entrega final.</p>
+      <div class="founder-soc"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div>
+    </div>
+    <div class="founder-card">
+      <div class="founder-ini">BL</div>
+      <div class="founder-name">Blair Blaise</div>
+      <div class="founder-role">Parceiro & Co-fundador</div>
+      <p class="founder-desc">Responsável pela estratégia comercial, relação com clientes e desenvolvimento do grupo BGI — Blaise Group Industries.</p>
+      <div class="founder-soc"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section-white">
+  <div style="text-align:center;">
+    <div class="sec-label" style="justify-content:center;"><span style="width:22px;height:1px;background:var(--bronze);display:block;"></span>Perguntas Frequentes</div>
+    <div class="sec-line" style="margin:14px auto;"></div>
+    <h2 class="sec-title">Dúvidas <em>comuns</em></h2>
+  </div>
+  <div class="faq-grid">
+    <div class="faq-item">
+      <button class="faq-btn" onclick="toggleFaq(this.parentElement)">
+        <span class="faq-q">Quanto custa um projecto de arquitectura?</span>
+        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+      </button>
+      <p class="faq-answer">O custo varia conforme dimensão, complexidade e fase do projecto. Fazemos sempre uma proposta personalizada após a reunião inicial. A primeira consulta é gratuita e sem compromisso.</p>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" onclick="toggleFaq(this.parentElement)">
+        <span class="faq-q">Trabalham fora de Lichinga?</span>
+        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+      </button>
+      <p class="faq-answer">Sim. Trabalhamos em toda Moçambique. Muitas fases podem ser desenvolvidas remotamente, com deslocações pontuais para visitas ao terreno e reuniões presenciais.</p>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" onclick="toggleFaq(this.parentElement)">
+        <span class="faq-q">Quanto tempo demora um projecto?</span>
+        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+      </button>
+      <p class="faq-answer">Depende da escala e complexidade. Um projecto de moradia unifamiliar leva tipicamente entre 6 a 12 semanas desde o arranque até ao projecto de execução completo.</p>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" onclick="toggleFaq(this.parentElement)">
+        <span class="faq-q">A Zavanna acompanha a construção?</span>
+        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+      </button>
+      <p class="faq-answer">Sim, oferecemos o serviço de direcção e fiscalização de obra como complemento ao projecto, garantindo que a construção respeita fielmente o projecto aprovado.</p>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" onclick="toggleFaq(this.parentElement)">
+        <span class="faq-q">Fazem apenas o projecto ou também o interior?</span>
+        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+      </button>
+      <p class="faq-answer">Fazemos ambos. Podemos desenvolver o projecto arquitectónico completo e, em continuidade, o projecto de design de interiores — garantindo coerência total entre os dois.</p>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" onclick="toggleFaq(this.parentElement)">
+        <span class="faq-q">Como obter um orçamento?</span>
+        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+      </button>
+      <p class="faq-answer">Basta contactar-nos por e-mail, WhatsApp ou pelo formulário desta página. Agendamos uma primeira conversa e enviamos proposta em 3 dias úteis.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PARCEIROS -->
+<div class="partners">
+  <p class="pt-label">Ferramentas & Parceiros</p>
+  <div class="pt-logos">
+    <span class="pt-name">Autodesk</span>
+    <span class="pt-name">Archicad</span>
+    <span class="pt-name">Lumion</span>
+    <span class="pt-name">Cimpor</span>
+    <span class="pt-name">Sika</span>
+    <span class="pt-name">Weber</span>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div style="position:relative;">
+    <div class="sec-label" style="justify-content:center;"><span style="width:22px;height:1px;background:var(--bronze);display:block;"></span>Pronto para começar?</div>
+    <div class="sec-line" style="margin:14px auto;"></div>
+    <h2 class="sec-title" style="font-size:clamp(2.4rem,5vw,4.2rem);">O seu projecto<br>começa <em>aqui</em>.</h2>
+    <p class="sec-desc" style="max-width:480px;margin:16px auto 0;text-align:center;">A primeira conversa é gratuita. Conte-nos a sua ideia e nós tratamos do resto — com rigor, visão e identidade.</p>
+    <div class="cta-btns">
+      <button class="btn btn-dark" onclick="openModal()">Solicitar Consulta</button>
+      <a href="mailto:blaisegroupindustries@gmail.com" class="btn btn-outline">Enviar E-mail</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="section">
+  <div class="ct-grid">
+    <div>
+      <div class="sec-label">Contacto</div>
+      <div class="sec-line"></div>
+      <h2 class="sec-title">Vamos criar<br>algo <em>juntos</em>.</h2>
+      <p class="sec-desc">Estamos em Lichinga e disponíveis para projectos em todo o país. Resposta garantida em 24 horas.</p>
+      <div class="ct-items">
+        <div class="ct-item"><div class="ct-ico"><i class="fas fa-map-marker-alt"></i></div><div><div class="ct-lbl">Localização</div><div class="ct-val">Lichinga, Niassa, Moçambique</div></div></div>
+        <div class="ct-item"><div class="ct-ico"><i class="fab fa-whatsapp"></i></div><div><div class="ct-lbl">WhatsApp</div><div class="ct-val">+258 86 440 354</div></div></div>
+        <div class="ct-item"><div class="ct-ico"><i class="fas fa-envelope"></i></div><div><div class="ct-lbl">E-mail</div><div class="ct-val">blaisegroupindustries@gmail.com</div></div></div>
+        <div class="ct-item"><div class="ct-ico"><i class="fas fa-clock"></i></div><div><div class="ct-lbl">Horário</div><div class="ct-val">Segunda a Sexta, 08h00 – 17h30</div></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="form-row">
+        <div class="form-group"><label>Nome</label><input type="text" placeholder="O seu nome"></div>
+        <div class="form-group"><label>Telefone</label><input type="tel" placeholder="+258 ..."></div>
+      </div>
+      <div class="form-group"><label>E-mail</label><input type="email" placeholder="o.seu@email.com"></div>
+      <div class="form-group">
+        <label>Tipo de Projecto</label>
+        <select>
+          <option value="">Seleccione...</option>
+          <option>Moradia Residencial</option>
+          <option>Edifício Comercial</option>
+          <option>Design de Interiores</option>
+          <option>Masterplanning</option>
+          <option>Reabilitação</option>
+          <option>Consultoria</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Mensagem</label><textarea rows="5" placeholder="Descreva o seu projecto, localização e prazo..."></textarea></div>
+      <button class="btn btn-dark" style="width:100%;justify-content:center;" onclick="openModal()">Enviar Mensagem <i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-grid">
+    <div>
+      <img class="ft-logo" src="Zavanna_logo.png" alt="Zavanna Build">
+      <p class="ft-tagline">Arquitectura com identidade, rigor e visão. Baseados em Lichinga, projectamos em toda Moçambique.</p>
+      <div class="ft-soc">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/25886440354" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div>
+      <h4>Serviços</h4>
+      <ul class="ft-links">
+        <li><a href="#servicos">Projecto Arquitectónico</a></li>
+        <li><a href="#servicos">Visualização 3D</a></li>
+        <li><a href="#servicos">Design de Interiores</a></li>
+        <li><a href="#servicos">Masterplanning</a></li>
+        <li><a href="#servicos">Reabilitação</a></li>
+        <li><a href="#servicos">Consultoria</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Atelier</h4>
+      <ul class="ft-links">
+        <li><a href="#sobre">Sobre a Zavanna</a></li>
+        <li><a href="#portfolio">Portfólio</a></li>
+        <li><a href="#equipa">Os Fundadores</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contacto</h4>
+      <ul class="ft-links">
+        <li><a href="https://wa.me/25886440354">+258 86 440 354</a></li>
+        <li><a href="mailto:blaisegroupindustries@gmail.com">E-mail</a></li>
+        <li><a href="#">Lichinga, Niassa</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <p>© 2026 Zavanna — Todos os direitos reservados.</p>
+    <div style="display:flex;gap:18px;"><a href="#">Privacidade</a><a href="#">Termos</a></div>
+  </div>
+  <div class="ft-credit">Uma empresa do grupo <a href="#">Blaise Group Industries (BGI)</a> — Desenvolvido pela <a href="#">agência BGI</a></div>
+</footer>
+
+<script>
+// NAV
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// MOBILE
+function toggleMob() { document.getElementById('mobNav').classList.toggle('open'); }
+function closeMob() { document.getElementById('mobNav').classList.remove('open'); }
+
+// MODAL
+function openModal() { document.getElementById('modal').classList.add('open'); }
+function closeModal() { document.getElementById('modal').classList.remove('open'); }
+document.getElementById('modal').addEventListener('click', e => {
+  if (e.target === document.getElementById('modal')) closeModal();
+});
+
+// PORTFOLIO FILTERS
+function setPf(btn) {
+  document.querySelectorAll('.pf-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// FAQ
+function toggleFaq(item) {
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// COUNTERS — animate on scroll
+function animateCounter(el, target) {
+  let n = 0;
+  const step = Math.ceil(target / 40);
+  const timer = setInterval(() => {
+    n = Math.min(n + step, target);
+    el.textContent = n;
+    if (n >= target) clearInterval(timer);
+  }, 40);
+}
+
+const cObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      animateCounter(document.getElementById('c1'), 50);
+      animateCounter(document.getElementById('c2'), 30);
+      animateCounter(document.getElementById('c3'), 3);
+      animateCounter(document.getElementById('c4'), 5);
+      cObs.disconnect();
+    }
+  });
+}, { threshold: 0.5 });
+cObs.observe(document.querySelector('.counters'));
+</script>
 </body>
 </html>
