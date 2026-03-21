@@ -330,9 +330,9 @@
         .m-ol:hover { border-color:var(--bronze); color:var(--bronze); }
 
         /* ── REVEAL ── */
-        .r  { opacity:0; transform:translateY(30px); transition:opacity .85s ease,transform .85s ease; }
-        .rl { opacity:0; transform:translateX(-30px); transition:opacity .85s ease,transform .85s ease; }
-        .rr { opacity:0; transform:translateX(30px); transition:opacity .85s ease,transform .85s ease; }
+        .r  { opacity:1; transform:none; transition:opacity .85s ease,transform .85s ease; }
+        .rl { opacity:1; transform:none; transition:opacity .85s ease,transform .85s ease; }
+        .rr { opacity:1; transform:none; transition:opacity .85s ease,transform .85s ease; }
         .r.v,.rl.v,.rr.v { opacity:1; transform:none; }
 
         /* ── RESPONSIVO ── */
@@ -380,7 +380,7 @@
             <h3>Iniciar Projecto</h3>
             <p>Contacte o atelier para uma primeira conversa sobre a sua ideia. Sem compromisso.</p>
             <div class="modal-acts">
-                <a href="/cdn-cgi/l/email-protection#3e5c525f574d5b594c514b4e57505a4b4d4a4c575b4d7e59535f5752105d5153" class="m-btn m-dk"><i class="fas fa-envelope"></i> Enviar E-mail</a>
+                <a href="/cdn-cgi/l/email-protection#92f0fef3fbe1f7f5e0fde7e2fbfcf6e7e1e6e0fbf7e1d2f5fff3fbfebcf1fdff" class="m-btn m-dk"><i class="fas fa-envelope"></i> Enviar E-mail</a>
                 <a href="https://wa.me/25886440354" class="m-btn m-ol" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
             </div>
         </div>
@@ -389,7 +389,7 @@
     <!-- NAV -->
     <nav id="nav" class="on">
         <a href="#" class="nav-brand" style="display:flex;align-items:center;">
-            <img src="Zavanna_logo.png" alt="Zavanna Build" style="height:96px;width:auto;object-fit:contain;transition:opacity 0.3s;">
+            <img src="Zavanna_logo.png" alt="Zavanna Build" style="height:96px;width:auto;object-fit:contain;">
         </a>
         <div class="hbg" id="hbg" onclick="toggleMenu()"><span></span><span></span><span></span></div>
         <div class="nav-links" id="navLinks">
@@ -671,7 +671,7 @@
         <p class="body-text r" style="max-width:480px;margin:16px auto 0;text-align:center;transition-delay:.15s">A primeira conversa é gratuita. Conte-nos a sua ideia e nós tratamos do resto — com rigor, visão e identidade.</p>
         <div class="cta-acts r" style="transition-delay:.2s">
             <button class="btn btn-dk" onclick="openModal()">Solicitar Consulta</button>
-            <a href="/cdn-cgi/l/email-protection#8ceee0ede5ffe9ebfee3f9fce5e2e8f9fff8fee5e9ffccebe1ede5e0a2efe3e1" class="btn btn-ol">Enviar E-mail</a>
+            <a href="/cdn-cgi/l/email-protection#50323c3139233537223f2520393e342523242239352310373d31393c7e333f3d" class="btn btn-ol">Enviar E-mail</a>
         </div>
     </section>
 
@@ -686,7 +686,7 @@
                 <div class="ct-details">
                     <div class="ct-item"><div class="ct-ico"><i class="fas fa-map-marker-alt"></i></div><div><div class="ct-lbl">Localização</div><div class="ct-val">Lichinga, Niassa, Moçambique</div></div></div>
                     <div class="ct-item"><div class="ct-ico"><i class="fab fa-whatsapp"></i></div><div><div class="ct-lbl">WhatsApp</div><div class="ct-val">+258 86 440 354</div></div></div>
-                    <div class="ct-item"><div class="ct-ico"><i class="fas fa-envelope"></i></div><div><div class="ct-lbl">E-mail</div><div class="ct-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ef8d838e869c8a889d809a9f86818b9a9c9b9d868a9caf88828e8683c18c8082">[email&#160;protected]</a></div></div></div>
+                    <div class="ct-item"><div class="ct-ico"><i class="fas fa-envelope"></i></div><div><div class="ct-lbl">E-mail</div><div class="ct-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="26444a474f554341544953564f4842535552544f435566414b474f4a0845494b">[email&#160;protected]</a></div></div></div>
                     <div class="ct-item"><div class="ct-ico"><i class="fas fa-clock"></i></div><div><div class="ct-lbl">Horário</div><div class="ct-val">Segunda a Sexta, 08h00 – 17h30</div></div></div>
                 </div>
             </div>
@@ -758,7 +758,7 @@
                 <h4>Contacto</h4>
                 <ul class="ft-links">
                     <li><a href="https://wa.me/25886440354">+258 86 440 354</a></li>
-                    <li><a href="/cdn-cgi/l/email-protection#355759545c465052475a40455c5b51404641475c5046755258545c591b565a58">E-mail</a></li>
+                    <li><a href="/cdn-cgi/l/email-protection#7f1d131e160c1a180d100a0f16111b0a0c0b0d161a0c3f18121e1613511c1012">E-mail</a></li>
                     <li><a href="#">Lichinga, Niassa</a></li>
                 </ul>
             </div>
@@ -771,7 +771,7 @@
     </footer>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        window.addEventListener('scroll', () => { /* nav always light */ });
+        window.addEventListener('scroll', () => { document.getElementById('nav').classList.add('on'); });
         function toggleMenu() { document.getElementById('navLinks').classList.toggle('open'); }
         function closeMenu() { document.getElementById('navLinks').classList.remove('open'); }
         function openModal() { document.getElementById('modal').classList.add('open'); }
@@ -785,3 +785,10 @@
             const t = parseInt(el.dataset.target), sup = el.querySelector('sup').outerHTML;
             let n = 0; const s = Math.ceil(t / 35);
             const i = 
+            const i = setInterval(() => { n = Math.min(n + s, t); el.innerHTML = n + sup; if (n >= t) clearInterval(i); }, 45);
+        }
+        const cObs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) { animCounter(x.target); cObs.unobserve(x.target); } }), { threshold: 0.5 });
+        document.querySelectorAll('.cnt-n[data-target]').forEach(el => cObs.observe(el));
+    </script>
+</body>
+</html>
