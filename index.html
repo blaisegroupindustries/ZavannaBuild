@@ -272,7 +272,7 @@ nav.scrolled { box-shadow:0 4px 22px rgba(26,23,19,.08); }
 .test-role { font-size:.76rem; color:var(--muted); margin-top:2px; }
 
 /* ── EQUIPA ── */
-.team-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; max-width:780px; margin-top:60px; }
+.team-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:60px; }
 .founder-card { background:var(--white); border:1px solid var(--border); padding:48px 40px; position:relative; overflow:hidden; transition:box-shadow .4s; border-bottom:2px solid transparent; }
 .founder-card:hover { box-shadow:0 22px 48px rgba(26,23,19,.07); border-bottom-color:var(--bronze); }
 .founder-ini { width:68px; height:68px; border:1px solid var(--bborder); display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:1.7rem; font-weight:600; color:var(--bronze); margin-bottom:24px; }
@@ -289,7 +289,7 @@ nav.scrolled { box-shadow:0 4px 22px rgba(26,23,19,.08); }
 .faq-btn { width:100%; background:none; border:none; padding:22px 0; display:flex; justify-content:space-between; align-items:flex-start; gap:14px; cursor:pointer; text-align:left; }
 .faq-q { font-size:.93rem; font-weight:500; color:var(--ink); line-height:1.5; }
 .faq-icon { width:25px; height:25px; border:1px solid var(--bborder); display:flex; align-items:center; justify-content:center; color:var(--bronze); font-size:.63rem; flex-shrink:0; transition:all .3s; }
-.faq-item.open .faq-icon { background:var(--bronze); color:#fff; border-color:var(--bronze); transform:rotate(45deg); }
+.faq-item.open .faq-icon { background:var(--bronze); color:#fff; border-color:var(--bronze); transform:rotate(180deg); }
 .faq-answer { font-size:.86rem; line-height:1.85; color:var(--muted); max-height:0; overflow:hidden; transition:max-height .4s ease, padding .3s; }
 .faq-item.open .faq-answer { max-height:200px; padding-bottom:18px; }
 
@@ -653,6 +653,13 @@ footer { background:var(--dark); padding:78px 6% 34px; }
       <p class="founder-desc">Responsável pela estratégia comercial, relação com clientes e desenvolvimento do grupo BGI — Blaise Group Industries.</p>
       <div class="founder-soc"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div>
     </div>
+    <div class="founder-card">
+      <div class="founder-ini">BéB</div>
+      <div class="founder-name">Bénit Blaise</div>
+      <div class="founder-role">Assistente de Projecto</div>
+      <p class="founder-desc">Apoia o desenvolvimento técnico dos projectos, assegurando que cada detalhe é executado com precisão e dentro dos prazos definidos.</p>
+      <div class="founder-soc"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div>
+    </div>
   </div>
 </section>
 
@@ -667,42 +674,42 @@ footer { background:var(--dark); padding:78px 6% 34px; }
     <div class="faq-item">
       <button class="faq-btn" onclick="toggleFaq(this.parentElement)">
         <span class="faq-q">Quanto custa um projecto de arquitectura?</span>
-        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+        <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
       </button>
       <p class="faq-answer">O custo varia conforme dimensão, complexidade e fase do projecto. Fazemos sempre uma proposta personalizada após a reunião inicial. A primeira consulta é gratuita e sem compromisso.</p>
     </div>
     <div class="faq-item">
       <button class="faq-btn" onclick="toggleFaq(this.parentElement)">
         <span class="faq-q">Trabalham fora de Lichinga?</span>
-        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+        <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
       </button>
       <p class="faq-answer">Sim. Trabalhamos em toda Moçambique. Muitas fases podem ser desenvolvidas remotamente, com deslocações pontuais para visitas ao terreno e reuniões presenciais.</p>
     </div>
     <div class="faq-item">
       <button class="faq-btn" onclick="toggleFaq(this.parentElement)">
         <span class="faq-q">Quanto tempo demora um projecto?</span>
-        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+        <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
       </button>
       <p class="faq-answer">Depende da escala e complexidade. Um projecto de moradia unifamiliar leva tipicamente entre 6 a 12 semanas desde o arranque até ao projecto de execução completo.</p>
     </div>
     <div class="faq-item">
       <button class="faq-btn" onclick="toggleFaq(this.parentElement)">
         <span class="faq-q">A Zavanna acompanha a construção?</span>
-        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+        <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
       </button>
       <p class="faq-answer">Sim, oferecemos o serviço de direcção e fiscalização de obra como complemento ao projecto, garantindo que a construção respeita fielmente o projecto aprovado.</p>
     </div>
     <div class="faq-item">
       <button class="faq-btn" onclick="toggleFaq(this.parentElement)">
         <span class="faq-q">Fazem apenas o projecto ou também o interior?</span>
-        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+        <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
       </button>
       <p class="faq-answer">Fazemos ambos. Podemos desenvolver o projecto arquitectónico completo e, em continuidade, o projecto de design de interiores — garantindo coerência total entre os dois.</p>
     </div>
     <div class="faq-item">
       <button class="faq-btn" onclick="toggleFaq(this.parentElement)">
         <span class="faq-q">Como obter um orçamento?</span>
-        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+        <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
       </button>
       <p class="faq-answer">Basta contactar-nos por e-mail, WhatsApp ou pelo formulário desta página. Agendamos uma primeira conversa e enviamos proposta em 3 dias úteis.</p>
     </div>
